@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class="menory-icon">
+    <block wx:if="{{ !isStart }}" > 
+      <button>开始</button> 
+      <text>规则：找出并点击出现的新图标</text>
+      <text>训练图标数：54</text>
+    </block>
+    <block wx:else>
+      <text>游戏页面</text>
+    </block>
+  
+</view>

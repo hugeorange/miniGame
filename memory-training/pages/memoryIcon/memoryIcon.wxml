@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="menory-icon">
+  
+  <view class="beforeStart" hidden="{{isStart}}">
+      <view class="start" bindtap="goStart" hover-class="start-hover">点击开始</view> 
+      <view class="tips">规则：找出并点击出现的新图标</view>
+      <view class="tips">训练图标数：54</view>
+  </view>
+  
+  <view class="started" hidden="{{!isStart}}">
+      <view class="icon-list">
+        <icon class="list-item" wx:for="{{baseList}}" wx:key="{{index}}" data-icon="{{item.icon}}" bindtap="selectIcon" >
+          <text>{{item.icon || index}}</text>
+        </icon>
+      </view>
+  </view>
+
+</view>
