@@ -10,7 +10,7 @@
   <view class="started" hidden="{{!isStart}}">
       <view class="icon-list">
         <icon class="list-item" wx:for="{{baseList}}" wx:key="{{index}}" data-icon="{{item.icon}}" bindtap="selectIcon" >
-          <text>{{item.icon || index}}</text>
+          <text>{{item.icon}}</text>
         </icon>
       </view>
   </view>

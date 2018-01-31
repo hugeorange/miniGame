@@ -32,5 +32,5 @@
   height: 100rpx;
   text-align: center;
   line-height: 100rpx;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
 }
