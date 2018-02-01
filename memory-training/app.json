@@ -1,0 +1,36 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/my/my",
+    "pages/memoryIcon/memoryIcon",
+    "pages/numberSpace/numberSpace"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "backgroundColor":"#eee",    
+    "selectedColor":"#FF3366", 
+    "list": [
+    {
+      "pagePath": "pages/index/index",
+      "text": "训练"
+    }, 
+    {
+      "pagePath": "pages/my/my",
+      "text": "我的"
+    }
+  ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  }
+}
+
+
+
