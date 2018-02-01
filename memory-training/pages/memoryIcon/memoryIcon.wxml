@@ -1,18 +1,34 @@
 <!--index.wxml-->
 <view class="menory-icon">
   
-  <view class="beforeStart" hidden="{{isStart}}">
+  <view class="beforeStart" hidden="{{isShowPanel !== 1}}">
       <view class="start" bindtap="goStart" hover-class="start-hover">点击开始</view> 
       <view class="tips">规则：找出并点击出现的新图标</view>
       <view class="tips">训练图标数：54</view>
   </view>
   
-  <view class="started" hidden="{{!isStart}}">
+  <!-- 游戏主题页 -->
+  <view class="started" hidden="{{isShowPanel !== 2}}">
       <view class="icon-list">
-        <icon class="list-item" wx:for="{{baseList}}" wx:key="{{index}}" data-icon="{{item.icon}}" bindtap="selectIcon" >
-          <text>{{item.icon || index}}</text>
+        <icon class="list-item flagClass" wx:for="{{baseList}}" wx:key="{{index}}" data-icon="{{item.icon}}" bindtap="selectIcon" >
+          <text>{{item.icon}}</text>
         </icon>
       </view>
+  </view>
+
+  <!--游戏失败页-->
+  <view class="nopass-page" hidden="{{isShowPanel !== 3}}">
+    <image class="bgimg" src="../../assets/image/gogogo2.jpg"></image>
+    <view class="tips">
+      <view class="tips1">闯过{{level}}关</view>
+      <view class="tips2">再接再厉，继续加油 -> 👍 👍 👍</view>    
+    </view>
+    
+    <view class="bottom-btn">
+      <button type="primary" size="mini" bindtap="goPlay" hover-class="bottom-btn-hover"> 继续玩 </button>
+      <button type="primary" open-type="share" size="mini" hover-class="bottom-btn-hover"> 炫一下 </button>
+      <button type="primary" size="mini" bindtap="noPlay" hover-class="bottom-btn-hover"> 不玩了 </button>
+    </view>
   </view>
 
 </view>

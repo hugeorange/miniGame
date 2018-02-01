@@ -22,7 +22,7 @@ const getOneArray = (items) => {
 }
 
 // 从一个数组里随机取出几个不同的值组成一个新数组
-const getNumArray = (items, count) => {
+const getNumArray = (arr, count) => {
   var shuffled = arr.slice(0);
   var i = arr.length;
   var min = i - count;
@@ -30,7 +30,6 @@ const getNumArray = (items, count) => {
   var index;
   while (i-- > min) {
       index = Math.floor((i + 1) * Math.random());
-      console.log(index,i);
       temp = shuffled[index];
       shuffled[index] = shuffled[i];
       shuffled[i] = temp;
@@ -38,10 +37,28 @@ const getNumArray = (items, count) => {
   return shuffled.slice(min);
 }
 
+function ajax(url, param, success, fail, type="get") {
+  wx.showLoading({title: '加载中...'});
+  wx.request({
+    type: type,
+    url: url,
+    data: param,
+    header: { 'content-type': 'application/json' },
+    success: function(res) {
+      wx.hideLoading();
+      success && success(res.data);
+    },
+    fail: function(err) {
+      wx.hideLoading();
+      fail && fail(err);
+    }
+  })
+}
 
 
 module.exports = {
   formatTime: formatTime,
   getOneArray: getOneArray,
   getNumArray: getNumArray,
+  ajax: ajax
 }
