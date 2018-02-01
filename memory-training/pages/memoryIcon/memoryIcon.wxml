@@ -9,6 +9,8 @@
   
   <!-- 游戏主题页 -->
   <view class="started" hidden="{{isShowPanel !== 2}}">
+      <view class="current-tips">当前关卡：第{{level}}关</view>
+      <view class="icon icon-lishi"></view>
       <view class="icon-list">
         <icon class="list-item flagClass" wx:for="{{baseList}}" wx:key="{{index}}" data-icon="{{item.icon}}" bindtap="selectIcon" >
           <text>{{item.icon}}</text>

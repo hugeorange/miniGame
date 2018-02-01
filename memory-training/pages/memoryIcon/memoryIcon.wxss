@@ -26,6 +26,11 @@
 .started{
 
 }
+.started .current-tips {
+  padding: 20rpx 0;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+}
 .started .icon-list .list-item {
   font-size: 20px;
   width: 100rpx;

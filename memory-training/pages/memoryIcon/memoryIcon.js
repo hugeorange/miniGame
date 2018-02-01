@@ -162,11 +162,11 @@ Page({
   },
   // 点击图标成功进入下一关
   passLevel() {
-    wx.showToast({
-      title: '第 ' + this.data.level + ' 关',
-      icon: 'success',
-      duration: 1500
-    })
+    // wx.showToast({
+    //   title: '第 ' + this.data.level + ' 关',
+    //   icon: 'success',
+    //   duration: 1500
+    // })
     this.clearBaseList(this.createCurrent);
   },
 
