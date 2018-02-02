@@ -18,6 +18,7 @@ const formatNumber = n => {
 const getOneArray = (items) => {
   const index = Math.floor(Math.random()*items.length);
   const item = items[index];
+  console.log('index:', index, 'item:', item);
   return {index, item};
 }
 
@@ -55,10 +56,28 @@ function ajax(url, param, success, fail, type="get") {
   })
 }
 
+// 微信成功toast
+const showSucc = (msg) => {
+  wx.showToast({
+    title: msg,
+    icon: 'success',
+    duration: 1500
+  })
+}
+// 微信失败toast
+const showNone = (msg) => {
+  wx.showToast({
+    title: msg,
+    icon: 'none',
+    duration: 1500
+  })
+}
 
 module.exports = {
   formatTime: formatTime,
   getOneArray: getOneArray,
   getNumArray: getNumArray,
-  ajax: ajax
+  ajax: ajax,
+  showSucc: showSucc,
+  showNone: showNone,
 }

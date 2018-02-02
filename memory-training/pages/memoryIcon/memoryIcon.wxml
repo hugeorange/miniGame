@@ -2,18 +2,38 @@
 <view class="menory-icon">
   
   <view class="beforeStart" hidden="{{isShowPanel !== 1}}">
-      <view class="start" bindtap="goStart" hover-class="start-hover">点击开始</view> 
-      <view class="tips">规则：找出并点击出现的新图标</view>
+      <view class="start" bindtap="goStart" data-time="-1" hover-class="start-hover">
+        <text>直接开始</text>
+      </view>
+      <view class="start" bindtap="goStart" data-time="{{timeCfg.time1}}"  hover-class="start-hover">
+        <text>开始-{{timeCfg.time1}}s</text>
+      </view>
+      <view class="start" bindtap="goStart" data-time="{{timeCfg.time2}}" hover-class="start-hover">
+        <text>开始-{{timeCfg.time2}}s</text>
+      </view>
+      <view class="start" bindtap="goStart" data-time="{{timeCfg.time3}}" hover-class="start-hover">
+        <text>开始-{{timeCfg.time3}}s</text>
+      </view>
+      <view class="tips tips1">规则：找出并点击屏幕中首次出现新图标</view>
+      <view class="tips">说明：选择指定模式-即允许记忆的最大时间</view>
       <view class="tips">训练图标数：54</view>
+
   </view>
   
   <!-- 游戏主题页 -->
   <view class="started" hidden="{{isShowPanel !== 2}}">
-      <view class="current-tips">当前关卡：第{{level}}关</view>
-      <view class="icon icon-lishi"></view>
+      <view class="current-tips">
+        <text>当前关卡：第{{level}}关</text>
+        <text class="count-down" hidden="{{currentModeTime == -1}}">倒计时：{{ spareTime }}</text>
+      </view>
       <view class="icon-list">
-        <icon class="list-item flagClass" wx:for="{{baseList}}" wx:key="{{index}}" data-icon="{{item.icon}}" bindtap="selectIcon" >
-          <text>{{item.icon}}</text>
+        <icon 
+          class="list-item iconfont {{item.icon}} {{ clickNo === index ? isPassClass : '' }}" 
+          wx:for="{{baseList}}" 
+          wx:key="{{index}}" 
+          data-icon="{{item.icon}}"
+          data-no="{{index}}"
+          bindtap="selectIcon" >
         </icon>
       </view>
   </view>
@@ -22,10 +42,25 @@
   <view class="nopass-page" hidden="{{isShowPanel !== 3}}">
     <image class="bgimg" src="../../assets/image/gogogo2.jpg"></image>
     <view class="tips">
-      <view class="tips1">闯过{{level}}关</view>
+      <view class="tips1">闯过{{level - 1}}关</view>
       <view class="tips2">再接再厉，继续加油 -> 👍 👍 👍</view>    
     </view>
-    
+    <view class="bottom-btn">
+      <button type="primary" size="mini" bindtap="goPlay" hover-class="bottom-btn-hover"> 继续玩 </button>
+      <button type="primary" open-type="share" size="mini" hover-class="bottom-btn-hover"> 炫一下 </button>
+      <button type="primary" size="mini" bindtap="noPlay" hover-class="bottom-btn-hover"> 不玩了 </button>
+    </view>
+  </view>
+
+  <!-- 游戏通关页 -->
+  <view class="nopass-page" hidden="{{isShowPanel !== 4}}">
+    <image class="bgimg" src="../../assets/image/gogogo2.jpg"></image>
+    <view class="tips">
+      <view class="tips1">通过全部关卡</view>
+      <view class="tips2"> 👍 👍 👍 </view>    
+      <view class="tips2"> 奖励如此厉害的您，一张苍老师福利照 </view>
+    </view>
+    <button class="downloadImg" type="primary" size="default" bindtap="goDownload" hover-class="bottom-btn-hover"> 下载您的福利奖品 </button>
     <view class="bottom-btn">
       <button type="primary" size="mini" bindtap="goPlay" hover-class="bottom-btn-hover"> 继续玩 </button>
       <button type="primary" open-type="share" size="mini" hover-class="bottom-btn-hover"> 炫一下 </button>

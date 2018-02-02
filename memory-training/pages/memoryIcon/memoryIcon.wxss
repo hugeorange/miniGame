@@ -1,4 +1,4 @@
-/**index.wxss**/
+/**选择游戏模式页面**/
 .menory-icon {
   width: 100%;
   height: 100%;
@@ -11,42 +11,68 @@
   padding-top: 50px;
 }
 .beforeStart .start{
-  font-size: 20px;
-  padding: 20px;
+  font-size: 12px;
+  padding-top: 14px;
   color: #fff;
+}
+.beforeStart .start text{
+  padding: 20rpx;
+  background-color: rgba(148, 140, 140, 0.639);
+  width:125px;
+  display:inline-block;
 }
 .beforeStart .start-hover{
   color: rgb(196, 196, 44);
 }
 .beforeStart .tips{
-  font-size: 14px;
+  font-size: 10px;
   color: rgb(228, 222, 222);
+  text-align: left;
+  padding: 5rpx 40rpx;
 }
-
-.started{
-
+.beforeStart .tips1 {
+  margin-top: 50rpx;
 }
+/* 游戏主体页面 */
 .started .current-tips {
   padding: 20rpx 0;
   background-color: rgba(0,0,0,0.5);
   color: #fff;
+  position: relative;
 }
+.started .current-tips .count-down {
+  color: red;
+  position: absolute;
+  right: 0;
+  top: 28rpx;
+  right: 12rpx;
+  font-size: 14px;
+}
+
 .started .icon-list .list-item {
   font-size: 20px;
   width: 100rpx;
   height: 100rpx;
   text-align: center;
   line-height: 100rpx;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
+  font-size: 35px;
+  color: rgb(0, 3, 9)
 }
 
+.started .icon-list .nopassClass {
+  background-color: rgba(209, 42, 42, 0.625);
+}
+
+.started .icon-list .passClass {
+  background-color: rgba(47, 182, 47, 0.564);
+}
+
+/* 游戏失败页面 */
 .nopass-page {
   width: 100%;
   height: 100%;
   position: relative;
-  /* padding-top: 100rpx; */
-  /* background-image: url('../../assets/image/gogogo2.jpg'); */
-  /* background-size: 100% auto; */
 }
 .nopass-page .tips{
   padding-top: 150rpx;
@@ -71,6 +97,9 @@
   top: 0;
   z-index: -1;
 }
+.nopass-page .downloadImg{
+  margin: 50rpx;
+}
 .nopass-page .bottom-btn {
   width: 100%;
   position: absolute;
@@ -79,6 +108,11 @@
   display: flex;
   justify-content: space-around;
 }
+.nopass-page .bottom-btn>button{
+  font-size: 18px;
+}
+
+
 
 
 /* .transition-page {

@@ -7,15 +7,21 @@ const utils = require('../../utils/util.js');
 Page({
   data: {
     isShowPanel: 1,
-    aniFlag: false, // 触发转场动画的标志
-    aniPage: 0,
+    timeCfg: {
+      time1: cfg.limitTime.time1,
+      time2: cfg.limitTime.time2,
+      time3: cfg.limitTime.time3
+    }, // 游戏限制时间
+    spareTime: '', // 剩余时间
+    currentModeTime: '', // 当前模式时间
     baseList: [],
     iconList: [],  // 图标元素
     iconPosArr: [], // 图标位置
     level: 1, // 当前关卡数
     passArr: [], // 已使用过的图标数组
     currentArr: [], // 当前关卡的图标数组
-
+    clickNo: '', // 当前点击的索引
+    isPassClass: '', // 是否过关的标志
   },
   
   onLoad: function () {
@@ -24,20 +30,26 @@ Page({
 
   // 刷新page，相当于将页面状态全部置为初始化时候
   refreshPage() {
-
     this.setData({
       isShowPanel: 1,
-      aniFlag: false,
-      aniPage: 0,
+      timeCfg: {
+        time1: cfg.limitTime.time1,
+        time2: cfg.limitTime.time2,
+        time3: cfg.limitTime.time3
+      }, // 游戏限制时间
+      spareTime: '', // 剩余时间
+      currentModeTime: '', // 当前模式时间
       baseList: [],
-      iconList: [],
-      iconPosArr: [],
-      level: 1,
-      passArr: [],
-      currentArr: []
+      iconList: [],  // 图标元素
+      iconPosArr: [], // 图标位置
+      level: 1, // 当前关卡数
+      passArr: [], // 已使用过的图标数组
+      currentArr: [], // 当前关卡的图标数组
+      clickNo: '', // 当前点击的索引
+      isPassClass: '', // 是否过关的标志
     }, () => {
       console.log(this.data);
-      
+      // 进入模式选择页面了，所以不需要做什么事情了。
     })
   },
 
@@ -47,13 +59,15 @@ Page({
     let list2 = [];
     let list3 = [];
     let num = cfg.iconNum;
-    for(let i=1; i<=num; i++){
+    let iconArr = cfg.iconArr;
+    for(let i=0; i< num; i++) {
       let obj1 = { no: i, icon: '' };
-      let obj2 = { no: i,  icon: 'i-' + i };    // 位置 名称
+      let obj2 = { no: i, icon: iconArr[i]};
       list1.push(obj1);
       list2.push(obj2);
       list3.push(i);
     }
+
     this.setData({
       baseList: list1, // 基础列表
       iconList: list2, // 基础图标
@@ -81,6 +95,7 @@ Page({
       element.no = posArr[index];
     });    
 
+    console.log("currentArr:", currentArr);
     this.setData({
       passArr: passArr,
       currentArr: currentArr,
@@ -96,17 +111,22 @@ Page({
   renderIcon() {
     let baseList = this.data.baseList; // 基础列表布局
     let currentArr = this.data.currentArr; // 当前关卡随机出来的icon
+    let time = this.data.currentModeTime; // 当前模式限制时间
+
     for(let i=0; i<currentArr.length; i++) {
       for(let j=0; j<baseList.length; j++) {
         if(currentArr[i].no === baseList[j].no) {
-          console.log(baseList[j].no);
           baseList[j].icon = currentArr[i].icon;
         }
       }
     }
+
     this.setData({
       baseList: baseList
-    })
+    }, () => {
+      this.handlerLimit && clearInterval(this.handlerLimit);
+      this.countDownTime(time);
+    });
   },
 
   // 清空baseList布局
@@ -123,57 +143,109 @@ Page({
   },
 
   // 开始按钮
-  goStart() {
+  goStart(e) {
     this.setData({isShowPanel: 2});
+    const time = e.currentTarget.dataset.time;
+    this.setData({ currentModeTime: time }); // 存储当前模式的限制时间
     this.initIcon();
   },
 
+  // 启动倒计时
+  countDownTime(time) {
+    if(time > 0) {
+      this.setData({ spareTime: time });
+      this.handlerLimit = setInterval(() => {
+        let spareTime = this.data.spareTime;
+        this.setData({
+          spareTime: --spareTime
+        })
+        if(this.data.spareTime <=  0) {
+          console.log('倒计时结束！挑战失败');
+          this.countDownNoPass();
+        }
+      }, 1000);
+    }
+  },
   // 点击图标
   selectIcon(e) {
     let icon = e.currentTarget.dataset.icon;
+    let no = e.currentTarget.dataset.no;
     let passArr = this.data.passArr;
-    let level = this.data.level;
     if(icon) {
       if(passArr.length) {
         let flag = passArr.every((element, index) => {
           return icon !== element.icon;
         })
         if(flag) {
-          console.log("选择成功！");
-          this.setData({level: ++level});
-          console.log(this.data.level);
-          this.passLevel();
-          // this.clearBaseList(this.createCurrent);
+          this.passLevel(no);
         } else {
-          wx.vibrateLong({
-            complete: () => {
-              console.log("选择失败！");
-              this.noPassLevel();
-            }
-          });
+          this.noPassLevel(no);
         }
       } else {
-        this.setData({level: ++level}); 
-        console.log("选择成功！", this.data.level); 
-        this.passLevel();
-        // this.clearBaseList(this.createCurrent);
+        this.passLevel(no);
       }
     }
   },
-  // 点击图标成功进入下一关
-  passLevel() {
-    // wx.showToast({
-    //   title: '第 ' + this.data.level + ' 关',
-    //   icon: 'success',
-    //   duration: 1500
-    // })
-    this.clearBaseList(this.createCurrent);
+  
+  // 挑战成功进入下一关
+  passLevel(no) {
+    let level = this.data.level;
+    this.setData({ 
+      clickNo: no,
+      isPassClass: "passClass"
+    });
+
+    if(level >= cfg.iconNum) {
+      wx.showModal({
+        title: '提示',
+        content: '恭喜您，闯关成功',
+        complete: () => {
+          this.setData({ isShowPanel: 4 })
+        }
+      })
+    } else {
+      setTimeout(() => {
+        this.setData({
+          level: ++level,
+          clickNo: no,
+          isPassClass: ""
+        });
+        this.clearBaseList(this.createCurrent);
+      }, 600);
+    }
   },
 
-  // 点击图标失败再来一次
-  noPassLevel() {
-    this.setData({ isShowPanel: 3 });
-    
+  // 挑战失败
+  noPassLevel(no) {
+    this.handlerLimit && clearInterval(this.handlerLimit);
+    this.setData({ 
+      clickNo: no,
+      isPassClass: "nopassClass"
+    });
+    wx.vibrateLong({
+      complete: () => {
+        setTimeout(() => {
+          console.log("选择失败！");
+          this.setData({ 
+            isShowPanel: 3,
+            clickNo: no,
+            isPassClass: ""
+          });
+        }, 600)
+      }
+    });
+  },
+
+  // 倒计时挑战失败
+  countDownNoPass() {
+    this.handlerLimit && clearInterval(this.handlerLimit);
+    wx.vibrateLong({
+      complete: () => {
+        this.setData({ 
+          isShowPanel: 3
+        });
+      }
+    });
   },
 
   // 继续玩
@@ -186,6 +258,28 @@ Page({
     wx.navigateBack();
   },
 
+  // 通关下载福利照
+  goDownload() {
+    wx.downloadFile({  
+      url: 'https://www.easy-mock.com/public/images/easy-mock.png',  
+      success:function(res){  
+        console.log(res)  
+        wx.saveImageToPhotosAlbum({  
+          filePath: res.tempFilePath,  
+          success: function (res) {  
+            utils.showSucc('下载成功！');
+          },  
+          fail: function (res) {  
+            console.log(res)  
+            utils.showSucc('下载失败！');
+          }  
+        })  
+      },
+      fail:function(){  
+        utils.showSucc('下载失败！');
+      }  
+    })
+  },
   // 提交当前数据
   m_Info(data, success, fail) {
     let param = data || {id: '1230600'};
@@ -203,7 +297,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: '我闯过了' + this.data.level + '关，不服来挑战',
+      title: '我闯过了' + this.data.level -1 + '关，不服来挑战',
       path: "pages/memoryIcon/memoryIcon",
       success: function(res) {
         wx.showToast({

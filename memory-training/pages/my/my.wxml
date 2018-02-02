@@ -2,11 +2,23 @@
 <view class="container">
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl || 'https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/7.png'}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <text class="userinfo-nickname">{{userInfo.nickName || '- ^o^ -'}}</text>
   </view>
   <view class="list">
-    <view class="list-item item1" hover-class="item-hover">记忆图标排行榜</view>
-    <view class="list-item item2" hover-class="item-hover">数字空间排行榜</view>
-    <view class="list-item item3" hover-class="item-hover">关于我们</view>
+    <view class="list-item item1 iconfont" hover-class="item-hover">
+      <icon class="iconfont icon-paihangbang2"></icon>
+      <text>记忆图标排行榜</text>
+      <icon class="right iconfont icon-jiantouyou"></icon>
+    </view>
+    <view class="list-item item2 iconfont " hover-class="item-hover">
+      <icon class="iconfont icon-paihangbang"></icon>
+      <text>数字空间排行榜</text>
+      <icon class="right iconfont icon-jiantouyou"></icon>
+    </view>
+    <view class="list-item item3 iconfont " hover-class="item-hover">
+      <icon class="iconfont icon-yijin04-guanyuwomen"></icon>
+      <text>关于我们</text>
+      <icon class="right iconfont icon-jiantouyou"></icon>
+    </view>
   </view>
 </view>

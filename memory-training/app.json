@@ -13,16 +13,20 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "backgroundColor":"#eee",    
-    "selectedColor":"#FF3366", 
+    "backgroundColor":"#eee",
+    "selectedColor":"#ffbf00", 
     "list": [
     {
       "pagePath": "pages/index/index",
-      "text": "训练"
+      "text": "训练",
+      "iconPath":"assets/image/mm.png",
+      "selectedIconPath":"assets/image/mm1.png"
     }, 
     {
       "pagePath": "pages/my/my",
-      "text": "我的"
+      "text": "我的",
+      "iconPath":"assets/image/gg1.png",
+      "selectedIconPath":"assets/image/gg.png"
     }
   ]
   },

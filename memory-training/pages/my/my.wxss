@@ -25,10 +25,21 @@
 }
 .list .list-item {
   border-top: 1rpx solid #eee;
-  padding: 20rpx 100rpx;
+  padding: 20rpx 30rpx;
   color: #bbb;
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 30px;
+}
+.list .list-item text {
+  padding-left: 30rpx;
+}
+.list .list-item .right {
+  float: right;
+}
+.list .list-item icon {
+  color: orange;
+  display: inline;
 }
 .list .list-item:nth-last-child(1) {
   border-bottom: 1px solid #eee;
