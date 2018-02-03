@@ -19,6 +19,7 @@ Page({
   getGameUserInfo2() {
     wx.getUserInfo({
       success: res => {
+        console.log("res:", res);
         app.globalData.userInfo = res.userInfo
         this.setData({
           userInfo: res.userInfo,

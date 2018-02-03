@@ -47,7 +47,7 @@
 } 
 page {
   height: 100%;
-  color: rgba(255, 166, 0, 0.845)
+  color: #fff;
 }
 
 

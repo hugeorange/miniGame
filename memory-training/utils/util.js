@@ -39,7 +39,10 @@ const getNumArray = (arr, count) => {
 }
 
 function ajax(url, param, success, fail, type="get") {
-  wx.showLoading({title: '加载中...'});
+  wx.showLoading({
+    title: '加载中...',
+    mask: true
+  });
   wx.request({
     type: type,
     url: url,
@@ -73,6 +76,15 @@ const showNone = (msg) => {
   })
 }
 
+// 微信loading
+const showLoading = (msg) => {
+  wx.showLoading({
+    title: msg,
+    mask: true
+  });
+}
+
+
 module.exports = {
   formatTime: formatTime,
   getOneArray: getOneArray,
@@ -80,4 +92,5 @@ module.exports = {
   ajax: ajax,
   showSucc: showSucc,
   showNone: showNone,
+  showLoading: showLoading,
 }

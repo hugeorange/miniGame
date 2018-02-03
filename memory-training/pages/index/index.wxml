@@ -2,4 +2,6 @@
 <view class="container">
   <view class="game-item" hover-class="game-hover" bindtap="goGame" data-game="memoryIcon">记忆图标</view>
   <view class="game-item" hover-class="game-hover" bindtap="goGame" data-game="numberSpace">数字空间</view>
+  <view class="game-item" data-url="0" bindtap="playVoice">播放声音1</view>
+  <view class="game-item" data-url="1" bindtap="playVoice">播放声音2</view>
 </view>
