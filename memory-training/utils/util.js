@@ -1,3 +1,5 @@
+const serverCfg = require('../config.js');
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -45,7 +47,7 @@ function ajax(url, param, success, fail, type="get") {
   });
   wx.request({
     type: type,
-    url: url,
+    url: serverCfg.host + url,
     data: param,
     header: { 'content-type': 'application/json' },
     success: function(res) {

@@ -200,7 +200,7 @@ Page({
   // 开始按钮
   goStart(e) {
     this.setData({isShowPanel: 2});
-    this.playVoice(0);
+    // this.playVoice(0); 声音暂时去除，体验不好...
     const time = e.currentTarget.dataset.time; // 倒计时
     const mode = e.currentTarget.dataset.mode || ''; // 简易、困难模式
     this.setData({ 
@@ -301,6 +301,7 @@ Page({
   // 倒计时挑战失败
   countDownNoPass() {
     this.handlerLimit && clearInterval(this.handlerLimit);
+    this.playVoice(2);
     wx.vibrateLong({
       complete: () => {
         this.setData({ 

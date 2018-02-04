@@ -6,8 +6,8 @@
         <view class="mode" bindtap="goStart" data-time="-1" data-mode="simple" hover-class="start-hover">开始-简易模式</view>
         <view class="mode" bindtap="goStart" data-time="-1" hover-class="start-hover">开始-正常模式</view>
         <view class="mode" bindtap="goStart" data-time="{{timeCfg.time1}}" hover-class="mode-hover">开始-{{timeCfg.time1}}s</view>
-        <view class="mode" bindtap="goStart" data-time="{{timeCfg.time1}}" hover-class="mode-hover">开始-{{timeCfg.time2}}s</view>
-        <view class="mode" bindtap="goStart" data-time="{{timeCfg.time1}}" hover-class="mode-hover">开始-{{timeCfg.time3}}s</view>
+        <view class="mode" bindtap="goStart" data-time="{{timeCfg.time2}}" hover-class="mode-hover">开始-{{timeCfg.time2}}s</view>
+        <view class="mode" bindtap="goStart" data-time="{{timeCfg.time3}}" hover-class="mode-hover">开始-{{timeCfg.time3}}s</view>
       </view>
       <view class="tips tips1">规则：找出并点击屏幕中首次出现新图标</view>
       <view class="tips">说明：选择指定模式-即允许记忆的最大时间</view>
@@ -52,7 +52,7 @@
     <view class="tips">
       <view class="tips1">通过全部关卡</view>
       <view class="tips2"> 👍 👍 👍 </view>    
-      <view class="tips2"> 奖励如此厉害的您，一张苍老师福利照 </view>
+      <view class="tips2"> 奖励如此厉害的您，一张焰灵姬福利照 </view>
     </view>
     <button class="downloadImg" type="primary" size="default" bindtap="goDownload" hover-class="bottom-btn-hover"> 下载您的福利奖品 </button>
     <view class="bottom-btn">

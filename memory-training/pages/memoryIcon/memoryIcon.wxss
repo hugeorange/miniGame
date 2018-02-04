@@ -15,15 +15,6 @@
   padding-top: 14px;
   color: #fff;
 }
-/* .beforeStart .start text{
-  padding: 20rpx;
-  background-color: rgba(148, 140, 140, 0.639);
-  width:125px;
-  display:inline-block;
-}
-.beforeStart .start-hover{
-  color: rgb(196, 196, 44);
-} */
 
 .beforeStart .tips{
   font-size:12px;
@@ -62,9 +53,9 @@
   color: red;
   position: absolute;
   right: 0;
-  top: 28rpx;
+  top: 22rpx;
   right: 12rpx;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .started .icon-list .list-item {

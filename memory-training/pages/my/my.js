@@ -13,26 +13,8 @@ Page({
   onLoad: function () {
     // this.getGameUserInfo(); // 获取用户信息，如果button组件不起作用的话，可调用 wx.getUserInfo
 
-    this.getGameUserInfo2();
+    this.getGameUserInfo();
   },
-
-  getGameUserInfo2() {
-    wx.getUserInfo({
-      success: res => {
-        console.log("res:", res);
-        app.globalData.userInfo = res.userInfo
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-  },
-
-
-
-
-// ===================================================================================================
 
   // 初始化项目初始出来的参数自带方法
   getGameUserInfo() {
