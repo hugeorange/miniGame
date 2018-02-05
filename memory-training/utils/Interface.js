@@ -1,11 +1,18 @@
 /**
  * 后台接口列表
  */
+const utils = require('util.js');
 
 /**
  * 参数： code: 通过 wx.login 方法获得
  * 返回值：uid、PHPSESSIONID
  */
+
+const sendSessionCode = (param, succ, fail) => {
+  const url = "https://www.zoomwei.cn/api/59715d4f7dd24.html";
+  var param = param || {};
+  utils.ajax(url, param, succ, fail, 'get');
+}
 
 
 /**
@@ -18,15 +25,36 @@
  * 参数：uid、resData用户信息
  * 返回值：true/false
  */
-
+const saveUserInfo = (param, succ, fail) => {
+  const url = "https://www.zoomwei.cn/api/59759d7d8e64c.html";
+  var param = param || {};
+  utils.ajax(url, param, succ, fail, 'post');
+}
 
 /**
  * 存储用户成绩数据
  * 参数：uid、gameMode、level
  */
+const saveUserInfoScore = (param, succ, fail) => {
+  const url = "https://www.zoomwei.cn/api/5975aa40c4afd.html";
+  var param = param || {};
+  utils.ajax(url, param, succ, fail, 'post');
+}
 
 
  /**
   * 用户排行榜数据
   * 无参数
   */
+const getWxUserScore = (param, succ, fail) => {
+  const url = "https://www.zoomwei.cn/api/5976aef463a77.html";
+  var param = param || {};
+  utils.ajax(url, param, succ, fail, 'post');
+}
+
+module.exports = {
+  sendSessionCode: sendSessionCode,
+  saveUserInfo: saveUserInfo,
+  saveUserInfoScore: saveUserInfoScore,
+  getWxUserScore: getWxUserScore,
+}

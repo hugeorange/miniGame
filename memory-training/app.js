@@ -1,4 +1,5 @@
 //app.js
+const inter = require('utils/interface.js');
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -10,6 +11,18 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res, inter);
+        let param = { code: res.code };        
+        inter.sendSessionCode(param, (res) => {
+          console.log(res);
+          let userInfo = {
+            uid: res.uid,
+            PHPSESSID: res.PHPSESSID
+          }
+          wx.setStorageSync('userInfo', userInfo);
+        }, (err) => {
+          console.log(err);
+        })
       }
     })
     // 获取用户信息

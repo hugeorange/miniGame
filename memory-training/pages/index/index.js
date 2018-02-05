@@ -18,5 +18,9 @@ Page({
     } else {
       utils.showNone('正在努力开发中...');
     }
+    wx.setStorageSync('userInfo', {a:1, b: 2});
+    // console.log(wx.getStorageSync('userInfo'));
+
+    utils.ajax('https://www.zoomwei.cn/api/59715d4f7dd24.html', {code: '123456'}, (res) => {}, (err) => {}, 'post');
   }
 })

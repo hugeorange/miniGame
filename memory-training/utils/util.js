@@ -1,4 +1,7 @@
 const serverCfg = require('../config.js');
+// const app = getApp();
+const userInfo = wx.getStorageSync('userInfo');
+console.log(userInfo);
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -40,14 +43,18 @@ const getNumArray = (arr, count) => {
   return shuffled.slice(min);
 }
 
-function ajax(url, param, success, fail, type="get") {
+function ajax(url, param, success, fail, method) {
+  // wx.getStorageSync('userInfo');
+  var param = Object.assign({}, param, userInfo);
+  console.log(url, param, method);
+  
   wx.showLoading({
     title: '加载中...',
     mask: true
   });
   wx.request({
-    type: type,
-    url: serverCfg.host + url,
+    method: method,
+    url: url,
     data: param,
     header: { 'content-type': 'application/json' },
     success: function(res) {
