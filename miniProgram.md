@@ -11,7 +11,7 @@
 
 
 - 微信公众平台小程序： 1725908367@qq.com  @19910602@XYZ 
-- 微信公众平台公众号：
+- 微信公众平台公众号： 2823395872@qq.com  @19910602@XYz
 - 同一处登录不同账号
 
 - 简易教程 `https://mp.weixin.qq.com/debug/wxadoc/dev/index.html`

@@ -92,7 +92,9 @@
   position: relative;
 }
 .nopass-page .tips{
-  padding-top: 150rpx;
+  /* padding-top: 150rpx; */
+  height: 250px;
+  background-color: rgb(243, 168, 59);
 }
 .nopass-page .tips1{
   color:#fff;
@@ -116,6 +118,7 @@
 }
 .nopass-page .downloadImg{
   margin: 50rpx;
+  background-color: rgb(242, 168, 59);
 }
 .nopass-page .bottom-btn {
   width: 100%;
@@ -127,4 +130,5 @@
 }
 .nopass-page .bottom-btn>button{
   font-size: 18px;
+  background-color: rgb(242, 168, 59);
 }

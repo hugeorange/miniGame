@@ -1,6 +1,6 @@
 //logs.js
 const util = require('../../utils/util.js')
-const inter = require('../../utils/interface.js');
+const inter = require('../../utils/i-nterface.js');
 const app = getApp();
 
 Page({

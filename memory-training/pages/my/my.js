@@ -1,16 +1,16 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const inter = require('../../utils/interface.js');
+const inter = require('../../utils/i-nterface.js');
+const util = require('../../utils/util.js')
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     layerFlag: true
   },
-
   onLoad: function () {
+    console.log('xxxxxxxxx');
     this.getUserInfo();
   },
 
@@ -27,7 +27,12 @@ Page({
       layerFlag: false
     })
   },
+  close() {
+    this.setData({
+      layerFlag: true
+    })
+  },
   noDevelop() {
-    utils.showNone('正在努力开发中...');
+    util.showNone('正在努力开发中...');
   }
 })

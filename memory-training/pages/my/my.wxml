@@ -22,25 +22,25 @@
     </view>
   </view>
   <!-- about me -->
-  <view class="layer-wrapper">
-    <view class="list layer" hidden="{{}}">
-      <view class="list-item item1 iconfont" bindtap="icon_rank" hover-class="item-hover">
-        <icon class="iconfont icon-paihangbang2"></icon>
-        <text>设计：</text>
-      </view>
-      <view class="list-item item2 iconfont" bindtap="noDevelop" hover-class="item-hover">
-        <icon class="iconfont icon-paihangbang"></icon>
-        <text>前端：</text>
-      </view>
-      <view class="list-item item3 iconfont" bindtap="aboutMe" hover-class="item-hover">
-        <icon class="iconfont icon-yijin04-guanyuwomen"></icon>
-        <text>后端：</text>
-      </view>
-      <view class="list-item item3 iconfont" bindtap="aboutMe" hover-class="item-hover">
-        <icon class="iconfont icon-yijin04-guanyuwomen"></icon>
-        <text>项目地址：https://github.com/hugeorange/miniGame</text>
-      </view>
+  <view class="layer-wrapper" hidden="{{ layerFlag }}"></view>
+  <view class="list layer" hidden="{{ layerFlag }}">
+    <view class="list-item item1 iconfont" bindtap="icon_rank" hover-class="item-hover">
+      <icon class="iconfont icon-paihangbang2"></icon>
+      <text>设计：葱</text>
     </view>
+    <view class="list-item item2 iconfont" bindtap="noDevelop" hover-class="item-hover">
+      <icon class="iconfont icon-paihangbang"></icon>
+      <text>前端：大桔子(^_^)</text>
+    </view>
+    <view class="list-item item3 iconfont"  hover-class="item-hover">
+      <icon class="iconfont icon-yijin04-guanyuwomen"></icon>
+      <text>后端：DoubleKing</text>
+    </view>
+    <!-- <view class="list-item item3 iconfont" hover-class="item-hover">
+      <icon class="iconfont icon-yijin04-guanyuwomen"></icon>
+      <text>项目地址：https://github.com/hugeorange/miniGame</text>
+    </view> -->
+    <view style="margin-top:10px;"><button type="primary" size="default" bindtap="close"> 关闭 </button></view> 
   </view>
   
 </view>
