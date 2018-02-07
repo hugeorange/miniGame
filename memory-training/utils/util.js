@@ -42,13 +42,15 @@ const getNumArray = (arr, count) => {
   return shuffled.slice(min);
 }
 
-function ajax(url, param, success, fail, method) {
+function ajax(url, param, success, fail, method, isShow) {
   var param = Object.assign({}, param, {"PHPSESSID": app.globalData.PHPSESSID}, {"uid": app.globalData.uid});
   console.log(url, param, method);
-  wx.showLoading({
-    title: '加载中...',
-    mask: true
-  });
+  if(isShow) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+  }
   wx.request({
     method: method,
     url: url,

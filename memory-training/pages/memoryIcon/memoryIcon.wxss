@@ -7,7 +7,8 @@
 .beforeStart{
   width: 100%;
   height: 100%;
-  background-color:rgb(34,35,37);
+  /* background-color:rgb(236,236,236); */
+  background-color:rgb(237,242,246);
   padding-top: 50px;
 }
 .beforeStart .start{
@@ -18,13 +19,18 @@
 
 .beforeStart .tips{
   font-size:12px;
-  color:rgb(228, 222, 222);
+  color:rgb(122, 122, 122);
   text-align:left;
   padding:5rpx 60rpx;  
 }
+
 .beforeStart .tips1 {
   margin-top: 50rpx;
 }
+.beforeStart .tips3 {
+  color: black;
+}
+
 .beforeStart .game-mode {
   display: flex;
   flex-wrap: wrap;
@@ -32,8 +38,8 @@
 }
 .beforeStart .game-mode .mode{
   width:40%;
-  padding:20rpx 5rpx;
-  background-color:#aaa;
+  padding:40rpx 5rpx;
+  background-color:rgb(255,165,0);
   margin:20rpx 10rpx;
   border-radius: 4px;
   font-size:14px;
@@ -43,6 +49,10 @@
 }
 
 /* 游戏主体页面 */
+.started {
+  background-color: rgb(237,242,246);  
+  min-height:100%;
+}
 .started .current-tips {
   padding: 20rpx 0;
   background-color: rgba(0,0,0,0.5);
@@ -63,9 +73,8 @@
   height: 100rpx;
   text-align: center;
   line-height: 100rpx;
-  /* border: 1px solid #eee; */
-  font-size: 45px;
-  color: rgb(0, 3, 9)
+  font-size: 40px;
+  color: rgb(255,165,0);
 }
 
 .started .icon-list .nopassClass {
@@ -86,13 +95,13 @@
   padding-top: 150rpx;
 }
 .nopass-page .tips1{
-  color:red;
+  color:#fff;
   background-color:rgba(0,0,0,0.5);
   font-size: 24px;
   padding: 25rpx;
 }
 .nopass-page .tips2{
-  color:red;
+  color:#fff;
   background-color:rgba(0,0,0,0.5);
   font-size: 16px;
   padding: 25rpx;
@@ -119,30 +128,3 @@
 .nopass-page .bottom-btn>button{
   font-size: 18px;
 }
-
-
-
-
-/* .transition-page {
-  width: 100%;
-  height: 100%;
-  background-color:rgb(34,35,37);
-  padding-top: 50px;
-  transform: translateX(100%);   
-  transition: transform 3s;
-  position:absolute;
-  left:0;
-  top:0;
-}
-.add-ani {
-  transform: translateX(-100%);
-}
-.sub-ani {
-  transform: translateX(100%);  
-}
-
-.transition-page .tips{
-  font-size: 20px;
-  padding: 20px;
-  color: #fff;
-} */

@@ -7,7 +7,7 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    rank_list: 'xxx',
+    layerFlag: true
   },
 
   onLoad: function () {
@@ -20,19 +20,14 @@ Page({
     })
   },
   icon_rank() {
-    console.log('--===')
-    const param = {
-      gt_type: 7,
-      gt_orginal: 1,
-      top: 50
-    }
-    inter.getTop(param, (res) => {
-      console.log(res);
-      this.setData({
-        rank_list: JSON.stringify(res)
-      })
-    }, (err) => {
-      console.log(err);
+    wx.navigateTo({ url: '../rank_list/rank_list?type=icon' });
+  },
+  aboutMe() {
+    this.setData({
+      layerFlag: false
     })
+  },
+  noDevelop() {
+    utils.showNone('正在努力开发中...');
   }
 })

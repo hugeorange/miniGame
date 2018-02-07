@@ -9,10 +9,11 @@ const iconCfg = {
 	},
 	audio: [
 		'https://www.zoomwei.cn/Public/mp3/succ.mp3', // 开场音乐，先废弃，下一版本再议
-		'https://www.zoomwei.cn/Public/mp3/succ.mp3', // 成功
+		'https://www.zoomwei.cn/Public/mp3/succ.wav', // 成功
 		'https://www.zoomwei.cn/Public/mp3/fail.mp3' // 失败
 	],
 	img: 'https://www.zoomwei.cn/Public/images/1234569.jpg', // 焰灵姬福利照
+	/*
     iconArr: [
 		"icon-huaxue",
 		"icon-huahua",
@@ -84,6 +85,63 @@ const iconCfg = {
 		"icon-shuxue",
 		"icon-shufa",
 		"icon-yinle",
+	],
+	*/
+	iconArr: [
+		'icon-B',
+		'icon-bao',
+		'icon-dangao',
+		'icon-dilei',
+		'icon-fangwusvg',
+		'icon-feiji',
+		'icon-huatong',
+		'icon-jiahao',
+		'icon-jiantou',
+		'icon-lingdang',
+		'icon-qiansvg',
+		'icon-tuding',
+		'icon-xinhao',
+		'icon-xingxing',
+		'icon-tanhao',
+		'icon-yinle',
+		'icon-yumao',
+		'icon-ye',
+		'icon-zhishipai',
+		'icon-zuobiao',
+		'icon-icon-test',
+		'icon-beizi',
+		'icon-M',
+		'icon-chazi',
+		'icon-baozi',
+		'icon-DNA',
+		'icon-duihuakuang',
+		'icon-denglou',
+		'icon-chuan',
+		'icon-fenzi',
+		'icon-fuzi',
+		'icon-gaogenxie',
+		'icon-gaojiaobei',
+		'icon-jiweijiu',
+		'icon-erji',
+		'icon-huoguo',
+		'icon-nan',
+		'icon-gou',
+		'icon-laba',
+		'icon-jiandao',
+		'icon-maozi',
+		'icon-qizinan',
+		'icon-pingzi',
+		'icon-regou',
+		'icon-waitao',
+		'icon-xigua',
+		'icon-xiangji',
+		'icon-xuegao',
+		'icon-yaling',
+		'icon-xiongzhao',
+		'icon-yusan',
+		'icon-yueliang',
+		'icon-yueliang',
+		'icon-yanjing'
 	],
 	gameMode:[
 		'1', // 记忆图标简易模式

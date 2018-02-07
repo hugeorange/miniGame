@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/my/my",
     "pages/memoryIcon/memoryIcon",
-    "pages/numberSpace/numberSpace"
+    "pages/numberSpace/numberSpace",
+    "pages/rank_list/rank_list"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -13,7 +14,7 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "backgroundColor":"#eee",
+    "backgroundColor":"#fff",
     "selectedColor":"#ffbf00", 
     "list": [
     {

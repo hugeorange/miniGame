@@ -2,4 +2,9 @@
 <view class="container">
   <view class="game-item" hover-class="game-hover" bindtap="goGame" data-game="memoryIcon">记忆图标</view>
   <view class="game-item" hover-class="game-hover" bindtap="goGame" data-game="numberSpace">数字空间</view>
+
+  <view>
+    <icon class="iconfont {{item}}" wx:for="{{iconArr}}" wx:key="{{index}}" style="font-size:20px; color:orange; display:inline-block;"></icon>
+  </view>
+  
 </view>

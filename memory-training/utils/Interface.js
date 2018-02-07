@@ -35,10 +35,10 @@ const saveUserInfo = (param, succ, fail) => {
  * 存储用户成绩数据
  * 参数：uid、gameMode、level
  */
-const saveUserInfoScore = (param, succ, fail) => {
+const saveUserInfoScore = (param, succ, fail, isShow) => {
   const url = "https://www.zoomwei.cn/api/5975aa40c4afd.html";
   var param = param || {};
-  utils.ajax(url, param, succ, fail, 'get');
+  utils.ajax(url, param, succ, fail, 'get', isShow);
 }
 
 

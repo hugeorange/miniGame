@@ -1,5 +1,4 @@
 /**app.wxss**/
-/* @import 'assets/style/icon1.wxss'; */
 @import 'assets/style/icon.wxss';
 
 
@@ -44,6 +43,7 @@
   /* justify-content: space-between; */
   padding: 100rpx 0;
   box-sizing: border-box;
+  /* background-color:rgb(237,242,246); */
 } 
 page {
   height: 100%;

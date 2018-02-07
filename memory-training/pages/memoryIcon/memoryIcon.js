@@ -29,7 +29,6 @@ Page({
   },
   
   onLoad: function () {
-    // this.postInfo();
     this.loadSource();
   },
 
@@ -39,23 +38,20 @@ Page({
     this.setData({ systemInfo: res });
     let url = cfg.audioCfg;
 
-    // promise 明天优化下写法
-    let promise0 = new Promise((resolve, reject) => {
-      this.downloadMp3(url[0], (res) => {
-        resolve(res);
+    let source = [url[0], url[1], url[2]];
+    let paromiseArr = [];
+    let promiseItem;
+
+    source.forEach((element,index) => {
+      promiseItem = new Promise((resolve, reject) => {
+        this.downloadMp3(url[index], (res) => {
+          resolve(res);
+        })
       })
-    });
-    let promise1 = new Promise((resolve, reject) => {
-      this.downloadMp3(url[1], (res) => {
-        resolve(res);
-      })
-    });
-    let promise2 = new Promise((resolve, reject) => {
-      this.downloadMp3(url[2], (res) => {
-        resolve(res);
-      })
-    });
-    Promise.all([promise0, promise1, promise2]).then((res) => {
+      paromiseArr.push(promiseItem);
+    })
+
+    Promise.all(paromiseArr).then((res) => {
       console.log('声音素材加载完成！', res);
       res.forEach((item, index) => {
         if(item.errMsg === "downloadFile:ok") {
@@ -79,7 +75,7 @@ Page({
       },
       fail:function(err){  
         console.log(err);
-        utils.showSucc('下载失败！');
+        // utils.showSucc('下载失败！');
         cb && cb(err);
       }  
     })
@@ -362,23 +358,36 @@ Page({
       orginal: 1,
       score: this.data.level,
     }
+    let isShowLoading = param.type === '7' ? true : false; 
     inter.saveUserInfoScore(param, (res) => {
       console.log(res);
+      if(param.type === '7') {
+        wx.showToast({
+          title: '成绩提交成功！',
+          icon: 'success',
+          duration: 3000
+        })
+      }
     }, (err) => {
       console.log(err);
-    })
+    }, isShowLoading)
   },
 
   // 分享信息
   onShareAppMessage: function (res) {
+    let title = '';
+    let level = this.data.level - 1;
     if (res.from === 'button') {
       // 来自页面内转发按钮
-      console.log(res.target)
+      title = '我在记忆力大挑战中，闯过了' + level + '关，不服来战';
+    } else {
+      title = app.globalData.userInfo.nickName + "正在邀请您玩记忆力大挑战，一起来玩吧";
     }
-    let level = this.data.level - 1; 
+    
     return {
-      title: '我闯过了' + level + '关，不服来挑战',
+      title: title,
       path: "pages/memoryIcon/memoryIcon",
+      imageUrl: "../../assets/image/share.jpg",
       success: function(res) {
         wx.showToast({
           title: '转发成功',

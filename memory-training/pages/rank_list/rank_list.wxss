@@ -1,0 +1,33 @@
+.container {
+    color: rgb(82, 79, 79);
+    font-size: 14px;
+}
+.container .rank-wrapper{
+    width: 100%;
+}
+.container .tips{
+    padding-left: 25px;
+    /* border-bottom: 1px solid rgba(204, 204, 204, 0.845); */
+    margin-bottom: 20px;
+}
+.container .rank-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    line-height: 30px;
+}
+.container .rank-item1 {
+    background-color: aliceblue;
+}
+.container .rank-item .item {
+    display: inline-block;
+    font-size: 14px;
+    width: 25%;
+    text-align: center;
+}
+.container .rank-item image{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}

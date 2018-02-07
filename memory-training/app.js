@@ -7,21 +7,23 @@ App({
     wx.setStorageSync('logs', logs);
 
     // 登录
+    wx.showLoading({ title: '加载中...', mask: true });
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         console.log(res);
         let param = { code: res.code };
-        wx.showLoading('加载中...');        
+        
         wx.request({
           method: "get",
           url: "https://www.zoomwei.cn/api/59715d4f7dd24.html",
           data: param,
           header: { 'content-type': 'application/json' },
           success: res => {
-            console.log(res);
+            console.log("登陆成功:", res);
             this.globalData.PHPSESSID = res.data.data.PHPSESSID;
             this.globalData.uid = res.data.data.uid;
+            wx.hideLoading();
           },
           fail: err => {
             console.log(err);

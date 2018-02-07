@@ -1,4 +1,7 @@
 /**index.wxss**/
+.container {
+  position: relative;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -46,4 +49,20 @@
 }
 .list .item-hover{
   background-color: #eee;
+}
+
+/* 关于我们弹层 */
+.layer-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5)
+}
+.layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40px;
 }
