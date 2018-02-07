@@ -1,5 +1,4 @@
 //app.js
-const inter = require('utils/interface.js');
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -11,39 +10,24 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res, inter);
-        let param = { code: res.code };        
-        inter.sendSessionCode(param, (res) => {
-          console.log(res);
-          let userInfo = {
-            uid: res.uid,
-            PHPSESSID: res.PHPSESSID
+        console.log(res);
+        let param = { code: res.code };
+        wx.showLoading('加载中...');        
+        wx.request({
+          method: "get",
+          url: "https://www.zoomwei.cn/api/59715d4f7dd24.html",
+          data: param,
+          header: { 'content-type': 'application/json' },
+          success: res => {
+            console.log(res);
+            this.globalData.PHPSESSID = res.data.data.PHPSESSID;
+            this.globalData.uid = res.data.data.uid;
+          },
+          fail: err => {
+            console.log(err);
+            wx.hideLoading();
           }
-          wx.setStorageSync('userInfo', userInfo);
-        }, (err) => {
-          console.log(err);
         })
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              console.log(res);
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
       }
     })
   },

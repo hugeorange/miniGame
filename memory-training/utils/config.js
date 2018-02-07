@@ -3,24 +3,16 @@ const iconCfg = {
 	num: 54, // 游戏图标数量
 	limitTime: { // 游戏限制时间
 		time: 0, // 默认
-		time1: 5,
+		time1: 7,
 		time2: 8,
 		time3: 10
 	},
 	audio: [
-		// 'http://yss.yisell.com/yisell/ybys2017030818030888/sound/yisell_sound_2014031522313362146_88366.mp3',
-		// 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46'
-		// 'https://www.minigme.com/Public/mp3/succ.mp3',
-		// 'https://www.minigme.com/Public/mp3/fail.mp3',
-		// 'http://yss.yisell.com/yisell/ycys2017030818030888/sound/yisell_sound_2014080616523388866_66366.mp3',
-		'http://yss.yisell.com/yisell/ybys2017030818030888/sound/yisell_sound_2014042816442362346_88366.mp3', //拳皇
-		// 'http://yss.yisell.com/yisell/pays2017030818030888/sound/yisell_sound_2007_11_18_20_38_115429.mp3',  // 通关
-		// 'https://www.minigme.com/Public/mp3/succ.mp3',	
-		'http://jsdx.sc.chinaz.com/files/download/sound/wang/wav/wang571.wav', 
-		'http://yss.yisell.com/yisell/ycys2017030818030888/sound/yisell_sound_2014081313362320795_66366.mp3', // 失败
+		'https://www.zoomwei.cn/Public/mp3/succ.mp3', // 开场音乐，先废弃，下一版本再议
+		'https://www.zoomwei.cn/Public/mp3/succ.mp3', // 成功
+		'https://www.zoomwei.cn/Public/mp3/fail.mp3' // 失败
 	],
-	img: 'https://www.minigme.com/Public/images/1234569.jpg',
-	// img: 'https://www.easy-mock.com/public/images/easy-mock.png',
+	img: 'https://www.zoomwei.cn/Public/images/1234569.jpg', // 焰灵姬福利照
     iconArr: [
 		"icon-huaxue",
 		"icon-huahua",
@@ -92,6 +84,11 @@ const iconCfg = {
 		"icon-shuxue",
 		"icon-shufa",
 		"icon-yinle",
+	],
+	gameMode:[
+		'1', // 记忆图标简易模式
+		'2', // 记忆图标正常模式
+		'7', // 记忆图标7s
 	]
 }
 

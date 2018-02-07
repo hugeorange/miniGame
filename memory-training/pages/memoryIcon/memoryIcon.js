@@ -3,6 +3,7 @@
 const app = getApp();
 const cfg = require('../../utils/config.js');
 const utils = require('../../utils/util.js');
+const inter = require('../../utils/interface.js');
 
 Page({
   data: {
@@ -149,7 +150,7 @@ Page({
     iconList.splice(index, 1);
     
     // 没通过一关随机打乱原本图标位置
-    if(gameMode !== 'simple') {
+    if(gameMode !== '1') {
       currentArr.forEach((element, index) => {
         element.no = posArr[index];
       });
@@ -261,6 +262,7 @@ Page({
         title: '提示',
         content: '恭喜您，闯关成功',
         complete: () => {
+          this.m_postInfo(); // 提交成绩
           this.setData({ isShowPanel: 4 })
         }
       })
@@ -288,6 +290,7 @@ Page({
       complete: () => {
         setTimeout(() => {
           console.log("选择失败！");
+          this.m_postInfo(); // 提交成绩
           this.setData({ 
             isShowPanel: 3,
             clickNo: no,
@@ -302,8 +305,10 @@ Page({
   countDownNoPass() {
     this.handlerLimit && clearInterval(this.handlerLimit);
     this.playVoice(2);
+
     wx.vibrateLong({
       complete: () => {
+        this.m_postInfo(); // 提交成绩
         this.setData({ 
           isShowPanel: 3
         });
@@ -351,12 +356,16 @@ Page({
     })
   },
   // 提交当前数据
-  m_Info(data, success, fail) {
-    let param = data || {id: '1230600'};
-    utils.ajax('https://www.easy-mock.com/mock/596e2463a1d30433d836f112/ele/ele', param, (res) => {
-      success && success();
+  m_postInfo() {
+    let param = {
+      type: this.data.currentGameMode,
+      orginal: 1,
+      score: this.data.level,
+    }
+    inter.saveUserInfoScore(param, (res) => {
+      console.log(res);
     }, (err) => {
-      fail && fail();
+      console.log(err);
     })
   },
 

@@ -5,7 +5,7 @@
     <text class="userinfo-nickname">{{userInfo.nickName || '- ^o^ -'}}</text>
   </view>
   <view class="list">
-    <view class="list-item item1 iconfont" hover-class="item-hover">
+    <view class="list-item item1 iconfont" bindtap="icon_rank" hover-class="item-hover">
       <icon class="iconfont icon-paihangbang2"></icon>
       <text>记忆图标排行榜</text>
       <icon class="right iconfont icon-jiantouyou"></icon>
@@ -21,4 +21,6 @@
       <icon class="right iconfont icon-jiantouyou"></icon>
     </view>
   </view>
+  <view style="color:black;">{{rank_list}}</view>
+  
 </view>

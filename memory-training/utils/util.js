@@ -1,7 +1,6 @@
 const serverCfg = require('../config.js');
-// const app = getApp();
-const userInfo = wx.getStorageSync('userInfo');
-console.log(userInfo);
+const app = getApp();
+console.log(app);
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -23,7 +22,7 @@ const formatNumber = n => {
 const getOneArray = (items) => {
   const index = Math.floor(Math.random()*items.length);
   const item = items[index];
-  console.log('index:', index, 'item:', item);
+  // console.log('index:', index, 'item:', item);
   return {index, item};
 }
 
@@ -44,10 +43,8 @@ const getNumArray = (arr, count) => {
 }
 
 function ajax(url, param, success, fail, method) {
-  // wx.getStorageSync('userInfo');
-  var param = Object.assign({}, param, userInfo);
+  var param = Object.assign({}, param, {"PHPSESSID": app.globalData.PHPSESSID}, {"uid": app.globalData.uid});
   console.log(url, param, method);
-  
   wx.showLoading({
     title: '加载中...',
     mask: true

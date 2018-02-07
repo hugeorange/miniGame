@@ -28,7 +28,7 @@ const sendSessionCode = (param, succ, fail) => {
 const saveUserInfo = (param, succ, fail) => {
   const url = "https://www.zoomwei.cn/api/59759d7d8e64c.html";
   var param = param || {};
-  utils.ajax(url, param, succ, fail, 'post');
+  utils.ajax(url, param, succ, fail, 'get');
 }
 
 /**
@@ -38,23 +38,34 @@ const saveUserInfo = (param, succ, fail) => {
 const saveUserInfoScore = (param, succ, fail) => {
   const url = "https://www.zoomwei.cn/api/5975aa40c4afd.html";
   var param = param || {};
-  utils.ajax(url, param, succ, fail, 'post');
+  utils.ajax(url, param, succ, fail, 'get');
 }
 
 
  /**
-  * 用户排行榜数据
+  * 获取该用户最高得分
   * 无参数
   */
 const getWxUserScore = (param, succ, fail) => {
   const url = "https://www.zoomwei.cn/api/5976aef463a77.html";
   var param = param || {};
-  utils.ajax(url, param, succ, fail, 'post');
+  utils.ajax(url, param, succ, fail, 'get');
 }
+
+/**
+ * 获取排行榜
+ */
+const getTop = (param, succ, fail) => {
+  const url = "https://www.zoomwei.cn/api/5a794e34638cd.html";
+  var param = param || {};
+  utils.ajax(url, param, succ, fail, 'get');
+}
+
 
 module.exports = {
   sendSessionCode: sendSessionCode,
   saveUserInfo: saveUserInfo,
   saveUserInfoScore: saveUserInfoScore,
   getWxUserScore: getWxUserScore,
+  getTop: getTop,
 }
