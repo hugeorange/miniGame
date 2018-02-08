@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "记忆图标",
-  "navigationBarBackgroundColor": "#000",
+  "navigationBarBackgroundColor": "#f3a83b",
   "backgroundColor":"#000",
-  "navigationBarTextStyle":"#000"
+  "navigationBarTextStyle":"white"
 }

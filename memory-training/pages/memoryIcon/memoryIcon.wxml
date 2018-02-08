@@ -36,10 +36,11 @@
 
   <!--游戏失败页-->
   <view class="nopass-page" hidden="{{isShowPanel !== 3}}">
-    <image class="bgimg" src="../../assets/image/gogogo2.jpg"></image>
+    <image class="bgimg" src="../../assets/image/pass2.jpg"></image>
     <view class="tips">
-      <!-- <view class="tips1">闯过{{level - 1}}关</view>
-      <view class="tips2">再接再厉，继续加油 -> 👍 👍 👍</view>     -->
+      <image class="" src="../../assets/image/pass1.png"></image>
+      <view class="tips1">闯过 <text class="pass-level">{{level - 1}}</text> 关</view>
+      <!-- <view class="tips2">再接再厉，继续加油 -></view>     -->
     </view>
     <view class="bottom-btn">
       <button type="primary" size="mini" bindtap="goPlay" hover-class="bottom-btn-hover"> 继续玩 </button>
@@ -50,12 +51,13 @@
 
   <!-- 游戏通关页 -->
   <view class="nopass-page" hidden="{{isShowPanel !== 4}}">
-
-    <image class="bgimg" src="../../assets/image/gogogo2.jpg"></image>
+    <image class="bgimg" src="../../assets/image/pass2.jpg"></image>
     <view class="tips">
-      <!-- <view class="tips1">通过全部关卡</view>
-      <view class="tips2"> 👍 👍 👍 </view>    
-      <view class="tips2"> 奖励如此厉害的您，一张焰灵姬福利照 </view> -->
+      <image class="" src="../../assets/image/pass1.png"></image>
+      <view class="tips1">
+        <view class="pass-level">通过全部关卡</view>
+        <view class="reward"> 奖励如此厉害的您，一张焰灵姬福利照 </view>      
+      </view>
     </view>
     <button class="downloadImg" type="primary" size="default" bindtap="goDownload" hover-class="bottom-btn-hover"> 下载您的福利奖品 </button>
     <view class="bottom-btn">

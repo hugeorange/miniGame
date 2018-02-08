@@ -15,12 +15,22 @@
       <text>数字空间排行榜</text>
       <icon class="right iconfont icon-jiantouyou"></icon>
     </view>
+    <view class="list-item item2 iconfont" bindtap="noDevelop" hover-class="item-hover">
+      <icon class="iconfont icon-paihangbang"></icon>
+      <!-- <button class="connect-kf" type="default" size="mini"  open-type="contact"> 联系客服 </button>       -->
+      <contact-button type="default-dark" size="20" session-from="weapp">联系客服</contact-button>
+      <icon class="right iconfont icon-jiantouyou"></icon>
+    </view>
+
+
+
     <view class="list-item item3 iconfont" bindtap="aboutMe" hover-class="item-hover">
       <icon class="iconfont icon-yijin04-guanyuwomen"></icon>
       <text>关于开发者</text>
       <icon class="right iconfont icon-jiantouyou"></icon>
     </view>
   </view>
+
   <!-- about me -->
   <view class="layer-wrapper" hidden="{{ layerFlag }}"></view>
   <view class="list layer" hidden="{{ layerFlag }}">
