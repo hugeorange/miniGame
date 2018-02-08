@@ -13,7 +13,6 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         console.log(res);
         let param = { code: res.code };
-        
         wx.request({
           method: "get",
           url: "https://www.zoomwei.cn/api/59715d4f7dd24.html",

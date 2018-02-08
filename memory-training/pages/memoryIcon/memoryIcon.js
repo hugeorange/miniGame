@@ -29,7 +29,7 @@ Page({
   },
   
   onLoad: function () {
-    this.loadSource();
+    // this.loadSource();
   },
 
   loadSource() {
@@ -52,7 +52,6 @@ Page({
     })
 
     Promise.all(paromiseArr).then((res) => {
-      console.log('声音素材加载完成！', res);
       res.forEach((item, index) => {
         if(item.errMsg === "downloadFile:ok") {
           item.flag = true;
@@ -60,6 +59,7 @@ Page({
           item.flag = false;
         }
       })
+      console.log('声音素材加载完成！', res);
       this.setData({audioSource: res});
       wx.hideLoading();
     })
@@ -379,9 +379,9 @@ Page({
     let level = this.data.level - 1;
     if (res.from === 'button') {
       // 来自页面内转发按钮
-      title = '我在记忆力大挑战中，闯过了' + level + '关，不服来战';
+      title = '我在keep记忆中，闯过了' + level + '关，不服来战';
     } else {
-      title = app.globalData.userInfo.nickName + "正在邀请您玩记忆力大挑战，一起来玩吧";
+      title = app.globalData.userInfo.nickName + "正在邀请您玩keep记忆，一起来玩吧";
     }
     
     return {
@@ -411,17 +411,19 @@ Page({
     let audioSource = this.data.audioSource;
     let audioItem = audioSource[audioNo];
     let url;
-    if(audioItem.flag) {
-      url = audioItem.tempFilePath;
+    // if(audioItem.flag) {
+    //   url = audioItem.tempFilePath;
+    // } else {
+    //   url = cfg.audioCfg[audioNo];
+    // }
+    //  不知道什么问题，读缓存文件ios微信主页上上会提示版权受限无法播放音乐
+    url = cfg.audioCfg[audioNo];
+    if (systemInfo.platform == 'ios') {    // 安卓、ios兼容
+      this.audio = wx.getBackgroundAudioManager();
     } else {
-      url = cfg.audioCfg[audioNo];
+      this.audio = wx.createInnerAudioContext();
     }
     console.log(url);
-    if (systemInfo.platform == 'ios') {    // 安卓、ios兼容
-    this.audio = wx.getBackgroundAudioManager()
-    } else {
-    this.audio = wx.createInnerAudioContext();
-    }
     this.audio.title = '...'; // 必须加这一行，不然ios会报错
     this.audio.src = url;
     this.audio.play();

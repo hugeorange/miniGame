@@ -50,15 +50,19 @@
 .list .item-hover{
   background-color: #eee;
 }
-
-.list .list-item .connect-kf {
-  border: none;
-  border: 0px solid rgba(0,0,0,0);
-  width: 80%;
-  line-height: 40px;
-  /* color: #bbb; */
-  background-color: rgba(0,0,0,0);
-  -webkit-appearance: none;
+.list .connect-kf {
+  position: relative;
+}
+.list .list-item .connect-kf1 {
+  opacity: 0;
+  line-height: 30px;
+}
+.list .list-item .connect-kf2 {
+  position: absolute;
+  top: 25rpx;
+  left: 60rpx;
+  z-index: 999;
+  pointer-events: none;
 }
 
 /* 关于我们弹层 */
@@ -76,7 +80,7 @@
   right: 0;
   top: 90px;
   background-color: #fff;
-  z-index: 99;
+  z-index: 9999;
   color: #fff;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;

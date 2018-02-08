@@ -9,10 +9,14 @@
 
 
 
-
+-                  18601681492@163.com  xieying123
 - 微信公众平台小程序： 1725908367@qq.com  @19910602@XYZ 
 - 微信公众平台公众号： 2823395872@qq.com  @19910602@XYz
+- 芝麻小客服： 17301588754        326242499    http://xiaokefu.hotapp.cn/
 - 同一处登录不同账号
+
+- appid：wx03b1b47e8eb522cf    secret：6d2e5f15bbf86773ab62bbd0c07c45dd
+
 
 - 简易教程 `https://mp.weixin.qq.com/debug/wxadoc/dev/index.html`
 
@@ -121,7 +125,9 @@ wx.downloadFile({
 })
 ```
 
-
+- `最新问题` 
+  1. 刚刚发现用`downloadFile` api 下载的缓存文件，播放不出来了，ios上会提示版权受限，不知道是什么鬼。
+  2. 退而求其次，直接播放源文件了，反正就两三kb，无所谓了
 
 
 

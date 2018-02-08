@@ -15,10 +15,25 @@
       <text>数字空间排行榜</text>
       <icon class="right iconfont icon-jiantouyou"></icon>
     </view>
-    <view class="list-item item2 iconfont" bindtap="noDevelop" hover-class="item-hover">
+    <view class="list-item item2 iconfont connect-kf" hover-class="item-hover">
       <icon class="iconfont icon-paihangbang"></icon>
       <!-- <button class="connect-kf" type="default" size="mini"  open-type="contact"> 联系客服 </button>       -->
-      <contact-button type="default-dark" size="20" session-from="weapp">联系客服</contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
+      <text class="connect-kf2">联系客服</text>
       <icon class="right iconfont icon-jiantouyou"></icon>
     </view>
 

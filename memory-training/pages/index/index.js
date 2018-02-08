@@ -79,7 +79,7 @@ Page({
   onShareAppMessage() {
     let nickName = app.globalData.userInfo.nickName || '';
     return {
-      title: nickName + "正在邀请您玩记忆力大挑战，一起来玩吧",
+      title: nickName + "正在邀请您玩keep记忆，一起来玩吧",
       path: "pages/index/index",
       imageUrl: "../../assets/image/share.jpg",
       success: function(res) {
