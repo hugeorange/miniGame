@@ -1,5 +1,4 @@
-/**index.wxss**/
-.game-item {
+.train-item {
   text-align:center;
   height:150rpx;
   line-height:150rpx;
@@ -9,6 +8,6 @@
   margin:50rpx;
   border-radius: 5px;
 }
-.game-hover{
+.train-hover{
   background-color: yellowgreen;
 }

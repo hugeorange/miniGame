@@ -12,18 +12,18 @@ Page({
       time1: cfg.limitTime.time1,
       time2: cfg.limitTime.time2,
       time3: cfg.limitTime.time3
-    }, // 游戏限制时间
+    },
     spareTime: '', // 剩余时间
     currentModeTime: '', // 当前模式时间
-    currentGameMode: '', // 当前关卡模式
+    currentGameMode: '', // 当前训练模式
     baseList: [],
     iconList: [],  // 图标元素
     iconPosArr: [], // 图标位置
-    level: 1, // 当前关卡数
+    level: 1, // 当前训练等级
     passArr: [], // 已使用过的图标数组
-    currentArr: [], // 当前关卡的图标数组
+    currentArr: [], // 当前训练的图标数组
     clickNo: '', // 当前点击的索引
-    isPassClass: '', // 是否过关的标志
+    isPassClass: '', // 是否通过训练的标志
     systemInfo: {}, // 系统信息
     audioSource: [], //声音资源
   },
@@ -75,7 +75,6 @@ Page({
       },
       fail:function(err){  
         console.log(err);
-        // utils.showSucc('下载失败！');
         cb && cb(err);
       }  
     })
@@ -89,20 +88,19 @@ Page({
         time1: cfg.limitTime.time1,
         time2: cfg.limitTime.time2,
         time3: cfg.limitTime.time3
-      }, // 游戏限制时间
-      spareTime: '', // 剩余时间
-      currentModeTime: '', // 当前模式时间
-      currentGameMode: '', // 当前关卡模式
+      },
+      spareTime: '',
+      currentModeTime: '',
+      currentGameMode: '',
       baseList: [],
-      iconList: [],  // 图标元素
-      iconPosArr: [], // 图标位置
-      level: 1, // 当前关卡数
-      passArr: [], // 已使用过的图标数组
-      currentArr: [], // 当前关卡的图标数组
-      clickNo: '', // 当前点击的索引
-      isPassClass: '', // 是否过关的标志
+      iconList: [],
+      iconPosArr: [],
+      level: 1,
+      passArr: [],
+      currentArr: [],
+      clickNo: '',
+      isPassClass: '',
     }, () => {
-      // console.log(this.data);
       // 进入模式选择页面了，所以不需要做什么事情了。
     })
   },
@@ -115,7 +113,7 @@ Page({
     let num = cfg.iconNum;
     let iconArr = cfg.iconArr;
     for(let i=0; i< num; i++) {
-      let obj1 = { no: i, icon: '' };
+      let obj1 = { no: i, icon: '', isSelect: false };
       let obj2 = { no: i, icon: iconArr[i]};
       list1.push(obj1);
       list2.push(obj2);
@@ -130,22 +128,22 @@ Page({
     });
   },
 
-  // 根据当前关卡随机出相应数量的图标
+  // 根据当前等级随机出相应数量的图标
   createCurrent() {
-    let level = this.data.level;  // 当前关卡
-    let gameMode = this.data.currentGameMode; // 当前关卡模式
+    let level = this.data.level;  // 当前等级
+    let gameMode = this.data.currentGameMode; // 当前等级模式
     let iconList = this.data.iconList;  // 所剩图标数组
-    let currentArr = this.data.currentArr;  // 当前关卡图标元素数组
+    let currentArr = this.data.currentArr;  // 当前等级图标元素数组
     let iconPosArr = this.data.iconPosArr; // 位置数组
-    let [...passArr] = currentArr; // 深拷贝上一关卡的图标数组
+    let [...passArr] = currentArr; // 深拷贝上一等级的图标数组
 
-    let { index, item } = utils.getOneArray(iconList); // 随机取出当前这关的新图标
-    let posArr = utils.getNumArray(iconPosArr, level); // 取出当前关卡的随机位置
+    let { index, item } = utils.getOneArray(iconList); // 随机取出当前等级的新图标
+    let posArr = utils.getNumArray(iconPosArr, level); // 取出当前等级的随机位置
 
     currentArr.push(item);
     iconList.splice(index, 1);
     
-    // 没通过一关随机打乱原本图标位置
+    // 每完成一级训练打乱位置
     if(gameMode !== '1') {
       currentArr.forEach((element, index) => {
         element.no = posArr[index];
@@ -163,13 +161,14 @@ Page({
   // 将获得当前新数组渲染在页面上
   renderIcon() {
     let baseList = this.data.baseList; // 基础列表布局
-    let currentArr = this.data.currentArr; // 当前关卡随机出来的icon
+    let currentArr = this.data.currentArr; // 当前等级随机出来的icon
     let time = this.data.currentModeTime; // 当前模式限制时间
 
     for(let i=0; i<currentArr.length; i++) {
       for(let j=0; j<baseList.length; j++) {
         if(currentArr[i].no === baseList[j].no) {
           baseList[j].icon = currentArr[i].icon;
+          baseList[j].isSelect = false;
         }
       }
     }
@@ -200,9 +199,9 @@ Page({
     // this.playVoice(0); 声音暂时去除，体验不好...
     const time = e.currentTarget.dataset.time; // 倒计时
     const mode = e.currentTarget.dataset.mode || ''; // 简易、困难模式
-    this.setData({ 
+    this.setData({
       currentModeTime: time,  // 存储当前模式的限制时间
-      currentGameMode: mode 
+      currentGameMode: mode
     });
     this.initIcon();
   },
@@ -217,7 +216,7 @@ Page({
           spareTime: --spareTime
         })
         if(this.data.spareTime <=  0) {
-          console.log('倒计时结束！挑战失败');
+          console.log('倒计时结束！训练失败');
           this.countDownNoPass();
         }
       }, 1000);
@@ -225,10 +224,16 @@ Page({
   },
   // 点击图标
   selectIcon(e) {
+    let baseList = this.data.baseList;
     let icon = e.currentTarget.dataset.icon;
     let no = e.currentTarget.dataset.no;
+    let isSelect = e.currentTarget.dataset.flag;
     let passArr = this.data.passArr;
-    if(icon) {
+    if(icon && !isSelect) {
+      baseList[no].isSelect = true;
+      this.setData({
+        baseList: baseList,
+      })
       if(passArr.length) {
         let flag = passArr.every((element, index) => {
           return icon !== element.icon;
@@ -244,11 +249,11 @@ Page({
     }
   },
   
-  // 挑战成功进入下一关
+  // 成功进入下一级训练模式
   passLevel(no) {
     let level = this.data.level;
     this.playVoice(1);
-    this.setData({ 
+    this.setData({
       clickNo: no,
       isPassClass: "passClass"
     });
@@ -256,7 +261,7 @@ Page({
     if(level >= cfg.iconNum) {
       wx.showModal({
         title: '提示',
-        content: '恭喜您，闯关成功',
+        content: '恭喜您，通过全部训练',
         complete: () => {
           this.m_postInfo(); // 提交成绩
           this.setData({ isShowPanel: 4 })
@@ -274,11 +279,11 @@ Page({
     }
   },
 
-  // 挑战失败
+  // 训练失败
   noPassLevel(no) {
     this.handlerLimit && clearInterval(this.handlerLimit);
     this.playVoice(2);
-    this.setData({ 
+    this.setData({
       clickNo: no,
       isPassClass: "nopassClass"
     });
@@ -286,8 +291,8 @@ Page({
       complete: () => {
         setTimeout(() => {
           console.log("选择失败！");
-          this.m_postInfo(); // 提交成绩
-          this.setData({ 
+          this.m_postInfo(); // 提交训练成绩
+          this.setData({
             isShowPanel: 3,
             clickNo: no,
             isPassClass: ""
@@ -297,60 +302,61 @@ Page({
     });
   },
 
-  // 倒计时挑战失败
+  // 倒计时训练失败
   countDownNoPass() {
     this.handlerLimit && clearInterval(this.handlerLimit);
     this.playVoice(2);
 
     wx.vibrateLong({
       complete: () => {
-        this.m_postInfo(); // 提交成绩
-        this.setData({ 
+        this.m_postInfo();
+        this.setData({
           isShowPanel: 3
         });
       }
     });
   },
 
-  // 继续玩
+  // 继续训练
   goPlay() {
     this.refreshPage();
   },
 
-  // 不玩了
+  // 不练了
   noPlay() {
     wx.navigateBack();
   },
 
-  // 通关下载福利照
+  // 通过全部训练下载福利照
   goDownload() {
     const url = cfg.img;
     console.log(url);
     utils.showLoading('下载中...');
     wx.downloadFile({
-      url: url,  
-      success:function(res){  
-        console.log(res)  
-        wx.saveImageToPhotosAlbum({  
-          filePath: res.tempFilePath,  
-          success: function (res) {  
+      url: url,
+      success:function(res){
+        console.log(res);
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success: function (res) {
             wx.hideLoading();
             utils.showSucc('下载成功！');
-          },  
-          fail: function (err) {  
-            console.log(err)  
+          },
+          fail: function (err) {
+            console.log(err);
             wx.hideLoading();
             utils.showSucc('下载失败！');
-          }  
-        })  
+          }
+        })
       },
-      fail:function(err){  
+      fail:function(err){
         wx.hideLoading();
         console.log(err);
         utils.showSucc('下载失败！');
-      }  
+      }
     })
   },
+  
   // 提交当前数据
   m_postInfo() {
     let param = {
@@ -358,7 +364,7 @@ Page({
       orginal: 1,
       score: this.data.level,
     }
-    let isShowLoading = param.type === '7' ? true : false; 
+    let isShowLoading = param.type === '7' ? true : false;
     inter.saveUserInfoScore(param, (res) => {
       console.log(res);
       if(param.type === '7') {
@@ -370,7 +376,7 @@ Page({
       }
     }, (err) => {
       console.log(err);
-    }, isShowLoading)
+    }, isShowLoading);
   },
 
   // 分享信息
@@ -379,14 +385,14 @@ Page({
     let level = this.data.level - 1;
     if (res.from === 'button') {
       // 来自页面内转发按钮
-      title = '我在keep记忆中，闯过了' + level + '关，不服来战';
+      title = '我在keep记忆中，完成了' + level + '级，一起来训练吧';
     } else {
-      title = app.globalData.userInfo.nickName + "正在邀请您玩keep记忆，一起来玩吧";
+      title = app.globalData.userInfo.nickName + "正在邀请您进行keep记忆，一起来训练吧";
     }
     
     return {
       title: title,
-      path: "pages/memoryIcon/memoryIcon",
+      path: "pages/index/index",
       imageUrl: "../../assets/image/share.jpg",
       success: function(res) {
         wx.showToast({

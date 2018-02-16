@@ -22,7 +22,6 @@ const formatNumber = n => {
 const getOneArray = (items) => {
   const index = Math.floor(Math.random()*items.length);
   const item = items[index];
-  // console.log('index:', index, 'item:', item);
   return {index, item};
 }
 
@@ -42,7 +41,7 @@ const getNumArray = (arr, count) => {
   return shuffled.slice(min);
 }
 
-function ajax(url, param, success, fail, method, isShow) {
+function ajax(url, param, success, fail, method, isShow=true) {
   var param = Object.assign({}, param, {"PHPSESSID": app.globalData.PHPSESSID}, {"uid": app.globalData.uid});
   console.log(url, param, method);
   if(isShow) {
@@ -67,7 +66,7 @@ function ajax(url, param, success, fail, method, isShow) {
   })
 }
 
-// 微信成功toast
+// 成功toast
 const showSucc = (msg) => {
   wx.showToast({
     title: msg,
@@ -75,21 +74,30 @@ const showSucc = (msg) => {
     duration: 1500
   })
 }
-// 微信失败toast
-const showNone = (msg) => {
+// 失败toast
+const showNone = (msg, time=1500) => {
   wx.showToast({
     title: msg,
     icon: 'none',
-    duration: 1500
+    duration: time
   })
 }
 
-// 微信loading
+// loading
 const showLoading = (msg) => {
   wx.showLoading({
     title: msg,
     mask: true
   });
+}
+
+// 防抖函数
+const throttle = (method,delay,context) => {
+  clearTimeout(method.tId);
+  method.tId = setTimeout(function(){
+    console.log(111);
+    method.call(context);
+  },delay);
 }
 
 
@@ -101,4 +109,5 @@ module.exports = {
   showSucc: showSucc,
   showNone: showNone,
   showLoading: showLoading,
+  throttle: throttle,
 }

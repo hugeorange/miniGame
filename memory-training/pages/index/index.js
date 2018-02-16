@@ -10,16 +10,12 @@ Page({
     iconArr: []
   },
   onLoad: function () {
-    this.getUserInfo();
+    // this.getUserInfo();
     // this.testIcon();
   },
-  goGame(e) {
-    var pageParam = e.currentTarget.dataset.game;
-    if(pageParam !== 'numberSpace') {
-      wx.navigateTo({url: '../' + pageParam + '/' + pageParam});
-    } else {
-      utils.showNone('正在努力开发中...');
-    }
+  goTrain(e) {
+    var pageTrain = e.currentTarget.dataset.train;
+      wx.navigateTo({url: '../' + pageTrain + '/' + pageTrain});
   },
   postUserInfo(res) {
     let param = {
@@ -47,7 +43,7 @@ Page({
   guideUserAuth() {
     wx.showModal({
       title: '提示',
-      content: '您尚未授权小程序获取您的用户信息，这将影响您的游戏成绩的上传',
+      content: '您尚未授权小程序获取您的用户信息，这将影响您的训练成绩的上传',
       confirmText: '授权',
       cancelText: '不授权',
       success: (res) => {
@@ -79,7 +75,7 @@ Page({
   onShareAppMessage() {
     let nickName = app.globalData.userInfo.nickName || '';
     return {
-      title: nickName + "正在邀请您玩keep记忆，一起来玩吧",
+      title: nickName + "正在邀请您进行keep记忆，一起来训练吧",
       path: "pages/index/index",
       imageUrl: "../../assets/image/share.jpg",
       success: function(res) {

@@ -53,7 +53,7 @@ const getWxUserScore = (param, succ, fail) => {
 }
 
 /**
- * 获取排行榜
+ * 获取达人榜
  */
 const getTop = (param, succ, fail) => {
   const url = "https://www.zoomwei.cn/api/5a794e34638cd.html";

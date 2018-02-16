@@ -1,4 +1,3 @@
-<!--my.wxml-->
 <view class="container">
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl || 'https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/7.png'}}" background-size="cover"></image>
@@ -7,17 +6,16 @@
   <view class="list">
     <view class="list-item item1 iconfont" bindtap="icon_rank" hover-class="item-hover">
       <icon class="iconfont icon-paihangbang2"></icon>
-      <text>记忆图标排行榜</text>
+      <text>记忆图标达人榜</text>
       <icon class="right iconfont icon-jiantouyou"></icon>
     </view>
     <view class="list-item item2 iconfont" bindtap="noDevelop" hover-class="item-hover">
       <icon class="iconfont icon-paihangbang"></icon>
-      <text>数字空间排行榜</text>
+      <text>数字空间达人榜</text>
       <icon class="right iconfont icon-jiantouyou"></icon>
     </view>
     <view class="list-item item2 iconfont connect-kf" hover-class="item-hover">
       <icon class="iconfont icon-paihangbang"></icon>
-      <!-- <button class="connect-kf" type="default" size="mini"  open-type="contact"> 联系客服 </button>       -->
       <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
       <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
       <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
@@ -33,12 +31,10 @@
       <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
       <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
       <contact-button class="connect-kf1" type="default-dark" size="20" session-from="weapp"></contact-button>
-      <text class="connect-kf2">联系客服</text>
+      <text class="connect-kf2">联系小二，获取记忆攻略</text>
       <icon class="right iconfont icon-jiantouyou"></icon>
     </view>
-
-
-
+    
     <view class="list-item item3 iconfont" bindtap="aboutMe" hover-class="item-hover">
       <icon class="iconfont icon-yijin04-guanyuwomen"></icon>
       <text>关于开发者</text>
@@ -49,15 +45,15 @@
   <!-- about me -->
   <view class="layer-wrapper" hidden="{{ layerFlag }}"></view>
   <view class="list layer" hidden="{{ layerFlag }}">
-    <view class="list-item item1 iconfont" bindtap="icon_rank" hover-class="item-hover">
+    <view class="list-item item1 iconfont" hover-class="item-hover">
       <icon class="iconfont icon-paihangbang2"></icon>
       <text>设计：葱</text>
     </view>
-    <view class="list-item item2 iconfont" bindtap="noDevelop" hover-class="item-hover">
+    <view class="list-item item2 iconfont" hover-class="item-hover">
       <icon class="iconfont icon-paihangbang"></icon>
       <text>前端：大桔子(^_^)</text>
     </view>
-    <view class="list-item item3 iconfont"  hover-class="item-hover">
+    <view class="list-item item3 iconfont" hover-class="item-hover">
       <icon class="iconfont icon-yijin04-guanyuwomen"></icon>
       <text>后端：DoubleKing</text>
     </view>

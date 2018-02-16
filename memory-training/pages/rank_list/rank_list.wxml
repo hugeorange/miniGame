@@ -1,7 +1,6 @@
-<!--logs.wxml-->
 <view class="container">
   <view class="rank-wrapper">
-    <view class="tips">tips: 排行榜数据每2秒钟更新一次</view>
+    <view class="tips">tips: 达人榜数据每2秒钟更新一次</view>
     <view class="rank-item {{ index % 2 === 0 ? 'rank-item1' : '' }}" wx:for="{{rankList}}" wx:key="{{index}}">
       <view class="item">{{ index + 1 }}</view>
       <view class="item"> <image src="{{item.headimgurl}}"></image> </view>
@@ -9,5 +8,4 @@
       <view class="item">{{item.gt_score}}</view>
     </view>
   </view>
-  
 </view>

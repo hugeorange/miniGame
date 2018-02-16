@@ -1,4 +1,4 @@
-/**选择游戏模式页面**/
+/**选择训练模式页面**/
 .menory-icon {
   width: 100%;
   height: 100%;
@@ -47,7 +47,7 @@
   color: rgb(196, 196, 44);
 }
 
-/* 游戏主体页面 */
+/* 训练页面 */
 .started {
   background-color: rgb(237,242,246);  
   min-height:100%;
@@ -84,7 +84,7 @@
   background-color: rgba(47, 182, 47, 0.564);
 }
 
-/* 游戏失败页面 */
+/* 未通过训练页面 */
 .nopass-page {
   width: 100%;
   height: 100%;

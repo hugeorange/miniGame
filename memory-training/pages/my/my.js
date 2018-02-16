@@ -1,4 +1,3 @@
-//index.js
 //获取应用实例
 const app = getApp()
 const inter = require('../../utils/i-nterface.js');
@@ -10,7 +9,6 @@ Page({
     layerFlag: true
   },
   onLoad: function () {
-    console.log('xxxxxxxxx');
     this.getUserInfo();
   },
 
@@ -38,7 +36,7 @@ Page({
   onShareAppMessage() {
     let nickName = app.globalData.userInfo.nickName || '';
     return {
-      title: nickName + "正在邀请您玩keep记忆，一起来玩吧",
+      title: nickName + "正在邀请您进行keep训练，一起来训练吧",
       path: "pages/index/index",
       imageUrl: "../../assets/image/share.jpg",
       success: function(res) {

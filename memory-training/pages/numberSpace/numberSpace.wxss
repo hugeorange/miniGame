@@ -1,1 +1,111 @@
-/**index.wxss**/
+.number-space {
+    position: relative;
+    height: 100%;
+    text-align: center;
+}
+
+/* 训练主体页面 */
+.started {
+    background-color: rgb(237,242,246);  
+    min-height:100%;
+    text-align: center;
+}
+
+.started .icon-list icon{
+    width: 120rpx;
+    height: 120rpx;
+    text-align: center;
+    line-height: 120rpx;
+    font-size: 50px;
+    color: rgb(255,165,0);
+    margin: 1rpx;
+}
+.started .icon-list icon.no-remember {
+    background-color: #ccc;
+}
+.started .icon-list icon.remembered {
+    background-color: orange;
+}
+.started .icon-list icon.fail {
+    background-color: rgba(209, 42, 42, 0.625);
+}
+
+.number-space .bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100rpx;
+    color: #fff;
+    text-align: center;
+    line-height: 100rpx;
+    background-color: orange;
+}
+.number-space .bottom.remed{
+    background-color:#ccc;
+}
+/* 训练fail页面 */
+.nopass-page {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .nopass-page .bgimg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+  
+  .nopass-page .tips{
+    background-color: #f3a83b;
+    position: relative;
+    width: 100%;
+    /* padding-top: 25px; */
+  }
+  .nopass-page .tips image {
+    width: 680rpx;
+    height: 402rpx;
+    margin-top: 45px;
+  }
+  .nopass-page .tips1{
+    color:#fff;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 48%;
+  }
+  
+  .nopass-page .tips1 .pass-level {
+    font-size: 45px;
+  }
+
+  .nopass-page .tips1 .pass-all {
+    font-size: 30px;
+  }
+
+  .nopass-page .tips1 .reward {
+    font-size: 14px;
+  }
+  
+  .nopass-page .downloadImg{
+    margin: 50rpx;
+    background-color: rgb(242, 168, 59);
+  }
+  .nopass-page .bottom-btn {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 50rpx;
+    display: flex;
+    justify-content: space-around;
+  }
+  .nopass-page .bottom-btn>button{
+    font-size: 18px;
+    background-color: rgb(242, 168, 59);
+    border-radius: 6px;
+  }
+  

@@ -39,9 +39,8 @@ Page({
   onShareAppMessage() {
     let nickName = app.globalData.userInfo.nickName || '';
     return {
-      title: nickName + "正在邀请您玩记忆力大挑战，一起来玩吧",
+      title: nickName + "正在邀请您进行记忆力训练，一起来训练吧",
       path: "pages/index/index",
-      // imageUrl: '',
       success: function(res) {
         wx.showToast({
           title: '转发成功',

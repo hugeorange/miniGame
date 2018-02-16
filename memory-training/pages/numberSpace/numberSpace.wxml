@@ -1,12 +1,52 @@
-<!--index.wxml-->
-<view class="menory-icon">
-    <block wx:if="{{ !isStart }}" > 
-      <button>开始</button> 
-      <text>规则：找出并点击出现的新图标</text>
-      <text>训练图标数：54</text>
-    </block>
-    <block wx:else>
-      <text>游戏页面</text>
-    </block>
+<view class="number-space">
+  <view class="started" hidden="{{isShowPanel !== 1}}">
+    <view>
+      <view class="icon-list">
+        <icon 
+          class="{{ item.num > 0 ? (item.remeberFlag === false ? 'no-remember' : 'remembered') : '' }} {{item.fail === 1 ? 'fail' : '' }}"
+          wx:for="{{baseList}}" 
+          wx:key="{{item.no}}"
+          data-num="{{item.num}}"
+          data-no="{{item.no}}"
+          data-rem="{{item.remeberFlag}}"
+          bindtap="selectNum">
+          {{item.num}}
+        </icon>
+      </view>
+    </view>
+    <view class="bottom {{reFlag ? 'remed' : ''}}" bindtap="goRemembered">记好了</view>
+  </view>
+
+  <!--训练fail页-->
+  <view class="nopass-page" hidden="{{isShowPanel !== 2}}">
+    <image class="bgimg" src="../../assets/image/pass2.jpg"></image>
+    <view class="tips">
+      <image class="" src="../../assets/image/pass1.png"></image>
+      <view class="tips1">通过<text class="pass-level">{{level-1}}</text> 级训练</view>
+    </view>
+    <view class="bottom-btn">
+      <button type="primary" size="mini" bindtap="goPlay" hover-class="bottom-btn-hover"> 继续训练 </button>
+      <button type="primary" open-type="share" size="mini" hover-class="bottom-btn-hover"> 炫一下 </button>
+      <button type="primary" size="mini" bindtap="noPlay" hover-class="bottom-btn-hover"> 不练了 </button>
+    </view>
+  </view>
+
+  <!-- 训练完成页 -->
+  <view class="nopass-page" hidden="{{isShowPanel !== 3}}">
+    <image class="bgimg" src="../../assets/image/pass2.jpg"></image>
+    <view class="tips">
+      <image class="" src="../../assets/image/pass1.png"></image>
+      <view class="tips1">
+        <view class="pass-all">通过全部训练</view>
+        <view class="reward"> 奖励如此厉害的您，一张焰灵姬福利照 </view>   
+      </view>
+    </view>
+    <button class="downloadImg" type="primary" size="default" bindtap="goDownload" hover-class="bottom-btn-hover"> 下载您的福利奖品 </button>
+    <view class="bottom-btn">
+      <button type="primary" size="mini" bindtap="goPlay" hover-class="bottom-btn-hover"> 继续练 </button>
+      <button type="primary" open-type="share" size="mini" hover-class="bottom-btn-hover"> 炫一下 </button>
+      <button type="primary" size="mini" bindtap="noPlay" hover-class="bottom-btn-hover"> 不练了 </button>
+    </view>
+  </view>
   
 </view>
