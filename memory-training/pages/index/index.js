@@ -10,7 +10,7 @@ Page({
     iconArr: []
   },
   onLoad: function () {
-    // this.getUserInfo();
+    this.getUserInfo();
     // this.testIcon();
   },
   goTrain(e) {

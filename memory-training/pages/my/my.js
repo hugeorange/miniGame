@@ -31,7 +31,7 @@ Page({
     })
   },
   noDevelop() {
-    util.showNone('正在努力开发中...');
+    wx.navigateTo({ url: '../rank_list/rank_list?type=no' });    
   },
   onShareAppMessage() {
     let nickName = app.globalData.userInfo.nickName || '';

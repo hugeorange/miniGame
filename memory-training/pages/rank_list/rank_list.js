@@ -1,6 +1,7 @@
 //logs.js
 const util = require('../../utils/util.js')
 const inter = require('../../utils/i-nterface.js');
+const cfg = require('../../utils/config.js');
 const app = getApp();
 
 Page({
@@ -18,6 +19,12 @@ Page({
     if (this.data.type === 'icon') {
       param = {
         gt_type: 7,
+        gt_orginal: 1,
+        top: 50
+      }
+    } else if(this.data.type === 'no') {
+      param = {
+        gt_type: cfg.numberMode,
         gt_orginal: 1,
         top: 50
       }

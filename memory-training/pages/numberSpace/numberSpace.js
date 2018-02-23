@@ -107,10 +107,10 @@ Page({
       } else {
         console.log('训练失败');
         baseList[no].fail = 1;
-        this.playVoice(2);        
+        this.playVoice(2);
         setTimeout(() => {
           this.noPass();
-        }, 1000);
+        }, 2000);
       }
       this.setData({
         baseList: baseList,
@@ -118,9 +118,10 @@ Page({
       if (this.index === level + 1) {
         console.log('通过训练');
         level++;
-        this.pass(level);
+        setTimeout(() => {
+          this.pass(level);
+        }, 800);
       }
-      console.log("this.index:", this.index);
     }
     if(!reFlag) {
       utils.showNone('请先点击记好了，然后才能开始训练...');      
@@ -134,7 +135,7 @@ Page({
         title: '提示',
         content: '恭喜您，通过全部训练',
         complete: () => {
-          this.m_postInfo(); // 提交成绩
+          this.m_postInfo( level-1 ); // 提交成绩
           this.setData({ isShowPanel: 3 })
         }
       })
@@ -155,6 +156,7 @@ Page({
       isShowPanel: 2,
     })
     utils.showNone('当前等级训练失败！', 2500);
+    this.m_postInfo( this.data.level-1 );
   },
   // 继续训练
   goPlay() {
@@ -170,16 +172,16 @@ Page({
     wx.navigateBack();
   },
    // 提交当前数据
-   m_postInfo() {
+   m_postInfo(level) {
     let param = {
       type: cfg.numberMode,
       orginal: 1,
-      score: this.data.level,
+      score: level,
     }
     inter.saveUserInfoScore(param, (res) => {
       console.log(res);
       wx.showToast({
-        title: '提交成功！',
+        title: '成绩提交成功！',
         icon: 'success',
         duration: 3000
       })
@@ -230,11 +232,11 @@ Page({
     let audioItem = audioSource[audioNo];
     let url;
     url = cfg.audioCfg[audioNo];
-    if (systemInfo.platform == 'ios') {    // 安卓、ios兼容
-      this.audio = wx.getBackgroundAudioManager();
-    } else {
+    // if (systemInfo.platform == 'ios') {    // 安卓、ios兼容,好像不好使了
+      // this.audio = wx.getBackgroundAudioManager();
+    // } else {
       this.audio = wx.createInnerAudioContext();
-    }
+    // }
     console.log(url);
     this.audio.title = '...'; // 必须加这一行，不然ios会报错
     this.audio.src = url;
@@ -272,5 +274,13 @@ Page({
       }  
     })
   },
+  onUnload() {
+    let isShowPanel = this.data.isShowPanel;
+    let level = this.data.level;
+    if(isShowPanel === 1 && level > 1) {
+      this.m_postInfo(level - 1);
+    }
+    console.log('我反悔了');
+  }
 })
 
