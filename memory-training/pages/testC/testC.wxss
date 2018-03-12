@@ -1,0 +1,9 @@
+.testC {
+  color: #000;
+  width: 100%;
+}
+.canvas-image {
+  width: 80%;
+  margin: 0 auto;
+  height: 300px;
+}

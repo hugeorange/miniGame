@@ -50,7 +50,8 @@ Page({
         if (res.confirm) {
           this.setUserAuth();
         } else if (res.cancel) {
-          console.log('用户拒绝授权...')
+          console.log('用户拒绝授权...');
+          this.guideUserAuth();
         }
       }
     })
@@ -60,6 +61,11 @@ Page({
     wx.openSetting({
       success: (res) => {
         console.log(res);
+        this.getUserInfo();
+      },
+      fail: (err) => {
+        console.log(err);
+        this.setUserAuth();
       }
     })
   },

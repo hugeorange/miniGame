@@ -5,7 +5,7 @@
   </view>
   <view class="list">
 
-<!--
+
     <view class="list-item item1 iconfont" bindtap="icon_rank" hover-class="item-hover">
       <icon class="iconfont icon-paihangbang2"></icon>
       <text>记忆图标达人榜</text>
@@ -16,7 +16,6 @@
       <text>数字空间达人榜</text>
       <icon class="right iconfont icon-jiantouyou"></icon>
     </view>
--->
     
     <view class="list-item item2 iconfont connect-kf" hover-class="item-hover">
       <icon class="iconfont icon-paihangbang"></icon>

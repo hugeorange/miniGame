@@ -4,7 +4,8 @@
     "pages/my/my",
     "pages/memoryIcon/memoryIcon",
     "pages/numberSpace/numberSpace",
-    "pages/rank_list/rank_list"
+    "pages/rank_list/rank_list",
+    "pages/testC/testC"
   ],
   "window":{
     "backgroundTextStyle":"light",

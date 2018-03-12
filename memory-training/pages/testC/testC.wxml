@@ -1,0 +1,5 @@
+<view class="testC">
+  <text>测试Canvas</text>
+  <canvas canvas-id="myCanvas" class="canvas-image" style="border: 1px solid;"/>
+
+</view>
