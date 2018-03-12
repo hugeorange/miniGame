@@ -1,17 +1,18 @@
 <view class="menory-icon">
   <view class="beforeStart" hidden="{{isShowPanel !== 1}}">
     <view class="game-mode">
-      <view class="mode" bindtap="goStart" data-time="-1" data-mode="1" hover-class="start-hover">训练模式</view>
-      <view class="mode" bindtap="goStart" data-time="-1" data-mode="2" hover-class="start-hover">正常模式</view>
-      <view class="mode" bindtap="goStart" data-time="{{timeCfg.time1}}" data-mode="7" hover-class="mode-hover">挑战模式-{{timeCfg.time1}}s</view>
+    <!--  <view class="mode" bindtap="goStart" data-time="-1" data-mode="1" hover-class="start-hover">训练模式</view> -->
+    <!--  <view class="mode" bindtap="goStart" data-time="-1" data-mode="2" hover-class="start-hover">正常模式</view> -->
+    <!--  <view class="mode" bindtap="goStart" data-time="{{timeCfg.time1}}" data-mode="7" hover-class="mode-hover">挑战模式-{{timeCfg.time1}}s</view> -->
+      <view class="mode" bindtap="goStart" data-time="{{timeCfg.time1}}" data-mode="7" hover-class="mode-hover">开始训练</view>
       <!-- <view class="mode" bindtap="goStart" data-time="{{timeCfg.time2}}" hover-class="mode-hover">开始-{{timeCfg.time2}}s</view> -->
       <!-- <view class="mode" bindtap="goStart" data-time="{{timeCfg.time3}}" hover-class="mode-hover">开始-{{timeCfg.time3}}s</view> -->
     </view>
     <view class="tips tips1">说明：</view>
     <view class="tips">1、找出并点击屏幕中首次出现新图标</view>
-    <view class="tips">2、选择指定模式-即允许记忆的最大时间</view>
-    <view class="tips" style="color: black">3、只有挑战模式的成绩才会记录进达人行榜</view>
-    <view class="tips">4、训练图标数-54</view>
+   <!-- <view class="tips">2、选择指定模式-即允许记忆的最大时间</view>-->
+  <!--  <view class="tips" style="color: black">3、只有挑战模式的成绩才会记录进达人行榜</view>-->
+    <view class="tips">2、训练图标数-54</view>
   </view>
   
   <!-- 训练主页 -->
