@@ -3,7 +3,12 @@
   width: 100%;
 }
 .canvas-image {
-  width: 80%;
+  width: 300px;
   margin: 0 auto;
-  height: 300px;
+  height: 400px;
+}
+.canvas-circle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid red;
 }

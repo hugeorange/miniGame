@@ -101,6 +101,59 @@ const throttle = (method,delay,context) => {
 }
 
 
+/*
+canvas filltext API 自动换行
+
+str:要绘制的字符串
+canvas:canvas对象
+initX:绘制字符串起始x坐标
+initY:绘制字符串起始y坐标
+lineHeight:字行高，自己定义个值即可
+*/
+
+const  canvasTextAutoLine = (str, ctx, canvasWidth, initX, initY, lineHeight) => {
+  var lineWidth = 0;
+  // var canvasWidth = c.width; 
+  var lastSubStrIndex= 0; 
+  for(let i=0; i<str.length; i++){
+      console.log(str[i]);
+      // debugger
+      lineWidth += ctx.measureText(str[i]).width; 
+      if(lineWidth > canvasWidth-initX){   //减去initX,防止边界出现的问题
+          ctx.fillText(str.substring(lastSubStrIndex, i), initX, initY);
+          initY += lineHeight;
+          lineWidth = 0;
+          lastSubStrIndex = i;
+      } 
+      if(i==str.length-1){
+          ctx.fillText(str.substring(lastSubStrIndex,i+1),initX,initY);
+      }
+  }
+}
+
+
+/*
+function canvasTextAutoLine(str,canvas,initX,initY,lineHeight){
+  var ctx = canvas.getContext("2d"); 
+  var lineWidth = 0;
+  var canvasWidth = c.width; 
+  var lastSubStrIndex= 0; 
+  for(let i=0;i<str.length;i++){ 
+      lineWidth+=ctx.measureText(str[i]).width; 
+      if(lineWidth>canvasWidth-initX){//减去initX,防止边界出现的问题
+          ctx.fillText(str.substring(lastSubStrIndex,i),initX,initY);
+          initY+=lineHeight;
+          lineWidth=0;
+          lastSubStrIndex=i;
+      } 
+      if(i==str.length-1){
+          ctx.fillText(str.substring(lastSubStrIndex,i+1),initX,initY);
+      }
+  }
+}
+*/
+
+
 module.exports = {
   formatTime: formatTime,
   getOneArray: getOneArray,
@@ -110,4 +163,5 @@ module.exports = {
   showNone: showNone,
   showLoading: showLoading,
   throttle: throttle,
+  canvasTextAutoLine: canvasTextAutoLine,
 }

@@ -1,7 +1,7 @@
 // 图标总数量
 const iconCfg = {
 	num: 53, // 训练图标数量
-	numberSpace: 36, // 数字空间-max-36
+	numberSpace: 48, // 数字空间-max-36
 	limitTime: { // 训练限制时间
 		time: 0, // 默认
 		time1: 7,
@@ -75,6 +75,28 @@ const iconCfg = {
 		'7', // 记忆图标7s训练
 	],
 	numberMode: '3', // 数字空间训练正常模式
+	title: {
+		d1: {
+			title: '记忆小白',
+			img: 'xiaobai.jpg'
+		},
+		d2: {
+			title: '记忆能手',
+			img: 'nengshou.jpg'
+		},
+		d3: {
+			title: '记忆超群',
+			img: 'chaoqun.jpg'
+		},
+		d4: {
+			title: '记忆大师',
+			img: 'dashi.jpg'
+		},
+		d5: {
+			title: '记忆宗师',
+			img: 'zongshi.jpg'
+		}
+	}
 }
 
 
@@ -86,4 +108,5 @@ module.exports = {
 	img: iconCfg.img,
 	numberSpace: iconCfg.numberSpace,
 	numberMode: iconCfg.numberMode,
+	title: iconCfg.title,
 }

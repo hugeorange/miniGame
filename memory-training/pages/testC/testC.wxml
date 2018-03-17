@@ -1,5 +1,7 @@
 <view class="testC">
-  <text>测试Canvas</text>
-  <canvas canvas-id="myCanvas" class="canvas-image" style="border: 1px solid;"/>
+<!--  <canvas canvas-id="myCanvas1" class="canvas-circle"/> -->
+  <canvas canvas-id="myCanvas" class="canvas-image"/>
+  
 
+  <button bindtap="saveCanvas" hover-class="defaultTap">点击保存图片分享朋友圈</button>
 </view>
