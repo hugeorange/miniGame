@@ -30,6 +30,7 @@ Page({
   
   onLoad: function () {
     // this.loadSource();
+    // this.downloadImg();
   },
 
   loadSource() {
@@ -259,12 +260,14 @@ Page({
     });
 
     if(level >= cfg.iconNum) {
+      this.handlerLimit && clearInterval(this.handlerLimit);
       wx.showModal({
         title: '提示',
         content: '恭喜您，通过全部训练',
         complete: () => {
           this.m_postInfo(); // 提交成绩
           this.setData({ isShowPanel: 4 })
+          this.downloadImg("myCanvas1");
         }
       })
     } else {
@@ -296,6 +299,8 @@ Page({
             isShowPanel: 3,
             clickNo: no,
             isPassClass: ""
+          }, () => {
+            this.downloadImg();
           });
         }, 600)
       }
@@ -312,6 +317,8 @@ Page({
         this.m_postInfo();
         this.setData({
           isShowPanel: 3
+        }, () => {
+          this.downloadImg();
         });
       }
     });
@@ -328,7 +335,7 @@ Page({
   },
 
   // 通过全部训练下载福利照
-  goDownload() {
+  goDownYLJ() {
     const url = cfg.img;
     console.log(url);
     utils.showLoading('下载中...');
@@ -436,5 +443,155 @@ Page({
     this.audio.onPlay(() => {
       console.log('播放音频...');
     })
-  }
+  },
+
+
+  /************************************************* 画布 ***********************************************/
+   // 下载称号图片文件
+   downloadImg(canvas) {
+    utils.showLoading('加载中...');
+    wx.downloadFile({
+      url: app.globalData.userInfo.avatarUrl || 'https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/7.png',
+      success:(res) => {
+        console.log(res);
+        this.drawImage(res.tempFilePath, canvas);
+      },
+      fail: (err) => {  
+        console.log(err);
+        this.drawImage('../../assets/image/default.png');
+      },
+      complete: () => {
+        wx.hideLoading();
+      }
+    })
+  },
+
+  // drawImage
+  drawImage(imgUrl, ctxCanvas) {
+    console.log("ctxCanvas:", ctxCanvas, "imgUrl:", imgUrl);
+    let contextCanvas = ctxCanvas || "myCanvas";
+    const titleObj = this.getTitle();
+    const nickName = app.globalData.userInfo.nickName || '---';
+
+    const ctx = wx.createCanvasContext(contextCanvas);
+    ctx.setFillStyle('#fff');
+    ctx.fillRect(0, 0, 400, 440);
+    ctx.setFontSize(12);
+    ctx.setFillStyle("orange");
+
+    ctx.setFontSize(14);
+    ctx.drawImage(imgUrl, 125, 20, 50, 50);
+    ctx.setTextAlign('center');
+    ctx.fillText(nickName, 150, 90);
+    ctx.fillText(`在keep记忆中达到了 ${ctxCanvas ? '满' : this.data.level - 1} 级`, 150, 110);
+    ctx.fillText(`获得了 ${titleObj.title} 称号`, 150, 130);
+    ctx.fillText('来挑战我吧！', 150, 150);
+
+    ctx.drawImage(`../../assets/image/icon/${titleObj.img}`, 90, 170, 120, 120);    
+
+    ctx.drawImage('../../assets/image/sharema.jpg', 110, 300, 80, 80);    
+    ctx.setTextAlign('center');
+    ctx.fillText('长按图片来挑战吧', 150, 395);
+
+    ctx.draw();
+  },
+
+  // 获取称号
+  getTitle() {
+    let level = this.data.level -1 ;
+    let num = parseInt(level/10) + 1;
+    let titleObj = {};
+    if(num < 5) {
+      titleObj = {
+        title: cfg.title['d' + num].title,
+        img:  cfg.title['d' + num].img,
+      }
+    } else {
+      titleObj = {
+        title: cfg.title.d5.title,
+        img:  cfg.title.d5.img,
+      }
+    }
+    return titleObj;
+  },
+
+  // 保存 canvas 图片
+  saveCanvas(e) {
+    console.log(e);
+    let ctxCanvas = e.target.dataset.canvas;
+    wx.canvasToTempFilePath({
+      canvasId: ctxCanvas,
+      success: (res) => {
+        console.log(res);
+        this.canvasImgUrl = res.tempFilePath;
+        this.goDownload();
+      } 
+    })
+  },
+  // 下载 canvas 保存的图片
+  goDownload() {
+    wx.showModal({
+      title: '提示',
+      content: '点击确定下载截图到相册，分享截图到朋友圈，邀请更多朋友一起来挑战',
+      confirmText: '确定',
+      cancelText: '取消',
+      success: (res) => {
+        if(res.confirm) {
+          utils.showLoading('下载中...');
+          wx.saveImageToPhotosAlbum({
+            filePath: this.canvasImgUrl,
+            success: function (res) {
+              wx.hideLoading();
+              utils.showNone('成功下载到相册，请到相册选择图片分享到朋友圈，邀请更多朋友一起来挑战', 6000);
+            },
+            fail: (err) => {
+              console.log(err);
+              wx.hideLoading();
+              if(err.errMsg == "saveImageToPhotosAlbum:fail cancel") {
+                utils.showSucc('下载失败！');
+              } else {
+                // "saveImageToPhotosAlbum:fail auth deny"
+                this.guideUserAuth();
+              }
+            }
+          })
+        }  
+      }
+    })
+  },
+  /************************************************ 画布 *******************************************************/  
+  // 卸载页面
+  onUnload() {
+    this.handlerLimit && clearInterval(this.handlerLimit);
+    console.log('卸载页面');
+  },
+   // 弹框提示引导用户去授权
+   guideUserAuth() {
+    wx.showModal({
+      title: '提示',
+      content: '您尚未授权小程序访问您的相册，这将影响您下载图片发布朋友圈',
+      confirmText: '授权',
+      cancelText: '不授权',
+      success: (res) => {
+        if (res.confirm) {
+          this.setUserAuth();
+        } else if (res.cancel) {
+          console.log('用户拒绝授权...');
+        }
+      }
+    })
+  },
+  // 强制用户去授权
+  setUserAuth() {
+    wx.openSetting({
+      success: (res) => {
+        console.log(res);
+        this.goDownload();
+      },
+      fail: (err) => {
+        console.log(err);
+        utils.showSucc('授权失败！');
+      }
+    })
+  },
 })

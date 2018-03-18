@@ -12,6 +12,7 @@ Page({
   onLoad: function () {
     this.getUserInfo();
     // this.testIcon();
+    // this.guideUserAuth();
   },
   goTrain(e) {
     var pageTrain = e.currentTarget.dataset.train;

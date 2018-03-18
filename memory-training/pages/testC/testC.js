@@ -38,9 +38,9 @@ Page({
   },
 
   // drawImage
-  drawImage(imgUrl, ) {
+  drawImage(imgUrl) {
     const ctx = wx.createCanvasContext('myCanvas');
-
+    const nickName = app.globalData.userInfo.nickName || '---';
     ctx.setFillStyle('#fff');
     ctx.fillRect(0, 0, 400, 400);
     ctx.setFontSize(12);    
@@ -49,7 +49,7 @@ Page({
     ctx.setFontSize(14);
     ctx.drawImage(imgUrl, 125, 10, 50, 50);
     ctx.setTextAlign('center');
-    ctx.fillText(this.data.nickName, 150, 80);
+    ctx.fillText(nickName, 150, 80);
     ctx.fillText('在keep记忆中达到了18级', 150, 100);
     ctx.fillText('获得了战神称号', 150, 120);
     ctx.fillText('来挑战我吧！', 150, 140);
