@@ -3,12 +3,14 @@
   width: 100%;
   height: 100%;
   text-align: center;
+  background-image: url(https://www.zoomwei.cn/Public/images/headbackgroud.jpg);
+  background-size: 100px 100px;
+  background-repeat: repeat; 
 }
 .beforeStart{
   width: 100%;
   height: 100%;
-  background-color:rgb(237,242,246);
-  padding-top: 50px;
+  /* background-color:rgb(237,242,246); */
 }
 .beforeStart .start{
   font-size: 12px;
@@ -17,8 +19,8 @@
 }
 
 .beforeStart .tips{
-  font-size:12px;
-  color:rgb(122, 122, 122);
+  font-size:16px;
+  color:rgb(0,0,0);
   text-align:left;
   padding:5rpx 60rpx;  
 }
@@ -42,6 +44,7 @@
   margin:20rpx 10rpx;
   border-radius: 4px;
   font-size:14px;
+  margin-top: 50px;
 }
 .beforeStart .game-mode .mode-hover{
   color: rgb(196, 196, 44);
@@ -86,10 +89,17 @@
 
 /* 未通过训练页面 */
 .nopass-page {
-  width: 100%;
+  /* width: 100%;
   height: 100%;
   position: relative;
-  background-color: #f3a83b;
+  background-color: #f3a83b; */
+
+  width:100%;
+  min-height:100%;
+  position:relative;
+  background-color:#f3a83b;
+  display:flex;
+  flex-direction:column;
 }
 .nopass-page .zhanwei {
   width: 100%;
@@ -147,11 +157,13 @@
 }
 .nopass-page .bottom-btn {
   width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 50rpx;
+  /* position: absolute; */
+  /* left: 0; */
+  /* bottom: 50rpx; */
   display: flex;
   justify-content: space-around;
+  padding-bottom: 30px;
+  padding-top: 15px;
 }
 .nopass-page .bottom-btn>button{
   font-size: 18px;

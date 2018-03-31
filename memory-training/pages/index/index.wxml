@@ -1,5 +1,5 @@
 <view class="container">
   <view class="train-item" hover-class="train-hover" bindtap="goTrain" data-train="memoryIcon">记忆图标</view>
   <view class="train-item" hover-class="train-hover" bindtap="goTrain" data-train="numberSpace">数字空间</view>
-  <view class="train-item" hover-class="train-hover" bindtap="goTrain" data-train="testC">测试Canvas</view>
+<!--  <view class="train-item" hover-class="train-hover" bindtap="goTrain" data-train="testC">测试Canvas</view> -->
 </view>
