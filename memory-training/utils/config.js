@@ -1,7 +1,7 @@
 // 图标总数量
 const iconCfg = {
 	num: 54, // 训练图标数量
-	numberSpace: 48, // 数字空间-max-36
+	numberSpace: 40, // 数字空间-max-40
 	limitTime: { // 训练限制时间
 		time: 0, // 默认
 		time1: 7,
