@@ -1,0 +1,18 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "myApp",
+  "description": "test taro",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false,
+    "newFeature": true,
+    "nodeModules": false,
+    "autoAudits": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.5.2",
+  "condition": {}
+}
