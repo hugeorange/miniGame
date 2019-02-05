@@ -20,13 +20,39 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      // 'pages/index/index',
+      // 'pages/home/home',
+      'pages/icon/icon',
+      'pages/space/space',
+      'pages/my/my',
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    // tabBar: {
+    //   "backgroundColor":"#fff",
+    //   "selectedColor":"#ffbf00", 
+    //   "list": [
+    //     {
+    //       "pagePath": "pages/home/home",
+    //       "text": "训练",
+    //       "iconPath":"assets/image/mm.png",
+    //       "selectedIconPath":"assets/image/mm1.png"
+    //     }, 
+    //     {
+    //       "pagePath": "pages/my/my",
+    //       "text": "我的",
+    //       "iconPath":"assets/image/gg1.png",
+    //       "selectedIconPath":"assets/image/gg.png"
+    //     }
+    //   ]
+    // },
+    networkTimeout: {
+      "request": 10000,
+      "downloadFile": 10000
     }
   }
 

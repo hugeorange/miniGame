@@ -51,12 +51,37 @@ var _App = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      pages: ['pages/index/index'],
+      pages: [
+      // 'pages/index/index',
+      // 'pages/home/home',
+      'pages/icon/icon', 'pages/space/space', 'pages/my/my'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
         navigationBarTitleText: 'WeChat',
         navigationBarTextStyle: 'black'
+      },
+      // tabBar: {
+      //   "backgroundColor":"#fff",
+      //   "selectedColor":"#ffbf00", 
+      //   "list": [
+      //     {
+      //       "pagePath": "pages/home/home",
+      //       "text": "训练",
+      //       "iconPath":"assets/image/mm.png",
+      //       "selectedIconPath":"assets/image/mm1.png"
+      //     }, 
+      //     {
+      //       "pagePath": "pages/my/my",
+      //       "text": "我的",
+      //       "iconPath":"assets/image/gg1.png",
+      //       "selectedIconPath":"assets/image/gg.png"
+      //     }
+      //   ]
+      // },
+      networkTimeout: {
+        "request": 10000,
+        "downloadFile": 10000
       }
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }

@@ -1,52 +1,47 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
+import Taro, { Component } from "@tarojs/taro";
+import { View, Button, Text } from "@tarojs/components";
+import { saveUserInfo } from "../../common/api";
+import "./index.less";
 
-import { add, minus, asyncAdd } from '../../actions/counter'
-
-import './index.less'
-
-
-@connect(({ counter }) => ({
-  counter
-}), (dispatch) => ({
-  add () {
-    dispatch(add())
-  },
-  dec () {
-    dispatch(minus())
-  },
-  asyncAdd () {
-    dispatch(asyncAdd())
-  }
-}))
 class Index extends Component {
+  config = {
+    navigationBarTitleText: "用户授权",
+    navigationBarBackgroundColor: "#fac800"
+  };
 
-    config = {
-    navigationBarTitleText: '首页'
+  onGotUserInfo(e) {
+    console.log(e.detail);
+    const authInfo = e.detail;
+    if (authInfo.errMsg === "getUserInfo:ok") {
+      this.postUserInfo(authInfo)
+    }
+    // 跳转到首页
+    Taro.switchTab({url: '../home/home'})
   }
 
-  componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
+  postUserInfo(res) {
+    let param = {
+      encryptedData: res.encryptedData,
+      iv: res.iv
+    }
+    saveUserInfo(param);
   }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
+  render() {
     return (
-      <View className='index'>
-        <Button className='add_btn' onClick={this.props.add}>+</Button>
-        <Button className='dec_btn' onClick={this.props.dec}>-</Button>
-        <Button className='dec_btn' onClick={this.props.asyncAdd}>async</Button>
-        <View><Text>{this.props.counter.num}</Text></View>
-        <View><Text>Hello, World</Text></View>
+      <View className="index">
+        <Button
+          className="btn"
+          openType="getUserInfo"
+          lang="zh_CN"
+          type="primary"
+          onGetUserInfo={this.onGotUserInfo}
+        >
+          微信用户快速登录
+        </Button>
       </View>
-    )
+    );
   }
 }
 
-export default Index
+export default Index;

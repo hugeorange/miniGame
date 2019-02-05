@@ -4,7 +4,7 @@
 	"description": "taro version miniGame",
 	"appid": "wx03b1b47e8eb522cf",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
 		"postcss": false,
 		"minified": false,

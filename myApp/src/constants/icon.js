@@ -1,0 +1,2 @@
+export const CHANGESTATE = 'CHANGESTATE'
+export const BASELIST = 'BASELIST'

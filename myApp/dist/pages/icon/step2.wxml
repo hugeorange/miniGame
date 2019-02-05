@@ -1,0 +1,11 @@
+<block>
+    <view class="step2-class">
+        <view class="started">
+            <view class="current-tips"><text>训练等级：</text><text class="count-down">倒计时：</text>
+            </view>
+            <view class="icon-list">
+                <icon class="{{'list-item iconfont ' + item.$original.icon + ' ' + (clickNo == index ? isPassClass : '')}}" bindtap="clickIcon" wx:key="$loopState__temp2" wx:for="{{loopArray0}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item.$original}}"></icon>
+            </view>
+        </view>
+    </view>
+</block>

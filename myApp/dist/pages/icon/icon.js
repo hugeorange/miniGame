@@ -16,8 +16,6 @@ var _index2 = _interopRequireDefault(_index);
 
 var _index3 = require("../../npm/@tarojs/redux/index.js");
 
-var _counter = require("../../actions/counter.js");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26,110 +24,72 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Index = (_dec = (0, _index3.connect)(function (_ref) {
-  var counter = _ref.counter;
+var Icon = (_dec = (0, _index3.connect)(function (_ref) {
+  var icon = _ref.icon;
   return {
-    counter: counter
+    icon: icon
   };
 }, function (dispatch) {
   return {
-    add: function add() {
-      dispatch((0, _counter.add)());
-    },
-    dec: function dec() {
-      dispatch((0, _counter.minus)());
-    },
-    asyncAdd: function asyncAdd() {
-      dispatch((0, _counter.asyncAdd)());
-    }
+    // add () {
+    //   dispatch(add())
+    // },
+    // dec () {
+    //   dispatch(minus())
+    // },
+    // asyncAdd () {
+    //   dispatch(asyncAdd())
+    // }
   };
 }), _dec(_class = (_temp2 = _class2 = function (_BaseComponent) {
-  _inherits(Index, _BaseComponent);
+  _inherits(Icon, _BaseComponent);
 
-  function Index() {
+  function Icon() {
     var _ref2;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Index);
+    _classCallCheck(this, Icon);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref2, [this].concat(args))), _this), _this.$usedState = ["add", "__fn_onClick", "dec", "asyncAdd", "counter"], _this.config = {
-      navigationBarTitleText: '首页'
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = Icon.__proto__ || Object.getPrototypeOf(Icon)).call.apply(_ref2, [this].concat(args))), _this), _this.$usedState = ["showStep", "icon"], _this.config = {
+      navigationBarTitleText: "记忆图标",
+      navigationBarBackgroundColor: "#fac800"
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(Index, [{
+  _createClass(Icon, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).call(this, props);
+      _get(Icon.prototype.__proto__ || Object.getPrototypeOf(Icon.prototype), "_constructor", this).call(this, props);
     }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      console.log(this.props, nextProps);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {}
-  }, {
-    key: "componentDidShow",
-    value: function componentDidShow() {}
-  }, {
-    key: "componentDidHide",
-    value: function componentDidHide() {}
   }, {
     key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       ;
-      Object.assign(this.__state, {});
+
+      var showStep = this.__props.icon.showStep;
+      // 初次加载时，未展示的组件也会 render 一次 
+
+      Object.assign(this.__state, {
+        showStep: showStep
+      });
       return this.__state;
-    }
-  }, {
-    key: "funPrivateOmmjz",
-    value: function funPrivateOmmjz() {
-      this.__triggerPropsFn("add", [].concat(Array.prototype.slice.call(arguments)));
-    }
-  }, {
-    key: "funPrivateAyCnL",
-    value: function funPrivateAyCnL() {
-      this.__triggerPropsFn("dec", [].concat(Array.prototype.slice.call(arguments)));
-    }
-  }, {
-    key: "funPrivateprtRq",
-    value: function funPrivateprtRq() {
-      this.__triggerPropsFn("asyncAdd", [].concat(Array.prototype.slice.call(arguments)));
     }
   }]);
 
-  return Index;
+  return Icon;
 }(_index.Component), _class2.properties = {
-  "add": {
-    "type": null,
-    "value": null
-  },
-  "__fn_onClick": {
-    "type": null,
-    "value": null
-  },
-  "dec": {
-    "type": null,
-    "value": null
-  },
-  "asyncAdd": {
-    "type": null,
-    "value": null
-  },
-  "counter": {
+  "icon": {
     "type": null,
     "value": null
   }
-}, _class2.$$events = ["funPrivateOmmjz", "funPrivateAyCnL", "funPrivateprtRq"], _temp2)) || _class);
-exports.default = Index;
+}, _class2.$$events = [], _temp2)) || _class);
+exports.default = Icon;
 
-Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));
+Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Icon, true));
