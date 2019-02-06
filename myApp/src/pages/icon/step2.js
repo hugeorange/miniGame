@@ -81,6 +81,7 @@ class Step2 extends Component {
     let {
       baseList, // 基础列表布局
       currArr, // 当前等级随机出来的 icon
+      modeTime,
     } = iconProps
     const currMap = currArr.reduce((acc, cur) => {
       acc[cur.no] = cur
@@ -91,7 +92,7 @@ class Step2 extends Component {
     // let list = [...baseList]
     // let list = Object.assign([], baseList)
     // let list = baseList.concat([])
-    // 不知道为什么👇这样写又可以了
+    // 不知道为什么 👇 这样写又可以了
     // class 类不知道为什么总是生成两个
 
     baseList.forEach(item => {
@@ -101,9 +102,36 @@ class Step2 extends Component {
       }
     })
     this.props.baseList({baseList})
+    setTimeout(() => {
+      this.countDownTime(modeTime)
+    })
   }
 
+  // 倒计时
+  countDownTime = time => {
+    if(time > 0) {
+      this.props.changeState({spareTime: time})
+      this.handlerCountDownTime = setInterval(() => {
+        let spareTime = this.props.icon.spareTime;
+        this.props.changeState({spareTime: --spareTime})
+        if(this.props.icon.spareTime <=  0) {
+          console.log('倒计时结束！训练失败');
+          this.countDownNoPass();
+        }
+      }, 1000);
+    }
+  }
 
+  // 倒计时训练失败
+  countDownNoPass() {
+    this.handlerCountDownTime && clearInterval(this.handlerCountDownTime)
+    Taro.vibrateShort({}).then(res => {
+      setTimeout(() => {
+        this.props.changeState({showStep: 3})
+      }, 600)
+    })
+    console.log('倒计时训练失败。。。')
+  }
 
   clickIcon = item => {
     let {
@@ -125,19 +153,35 @@ class Step2 extends Component {
   }
 
   passLevel(item) {
+    this.handlerCountDownTime && clearInterval(this.handlerCountDownTime)
     let {level} = this.props.icon
-    
     // 播放通关音乐
     // 展示挑战成功状态
     this.props.changeState({clickNo: item.no, isPassClass: 'passClass'})
-
     // 下一关卡渲染
     setTimeout(() => {
       this.props.changeState({isPassClass: '', level: ++level})
       this.clearBaseList('createCurrent')
-    }, 800)
-
+    }, 600)
   }
+
+  noPassLevel(item) {
+    this.handlerCountDownTime && clearInterval(this.handlerCountDownTime)
+    console.log('挑战失败，不通过...')
+    this.props.changeState({clickNo: item.no, isPassClass: 'nopassClass'})
+    Taro.vibrateShort({}).then(res => {
+      setTimeout(() => {
+        this.props.changeState({
+          showStep: 3,
+          clickNo: item.no,
+          isPassClass: ""
+        })
+      }, 600)
+    })
+    // 到 step3 或 step4 页面
+  }
+
+  
 
   // 清空baseList布局
   clearBaseList(cb) {
@@ -149,12 +193,11 @@ class Step2 extends Component {
     })
   }
 
-  noPassLevel(item) {
-    console.log('挑战失败，不通过...')
-  }
-
   render() {
     const {
+      level,
+      modeTime,
+      spareTime,
       baseList,
       clickNo,
       isPassClass,
@@ -164,8 +207,9 @@ class Step2 extends Component {
       <View className="step2-class">
         <View className="started">
           <View className="current-tips">
-            <Text>训练等级：</Text>
-            <Text className="count-down">倒计时：</Text>
+            <Text>训练等级：{level}</Text>
+            {modeTime == -1 ? <Text>训练模式</Text> : <Text className="count-down">倒计时：{spareTime}</Text>}
+            
           </View>
           <View className="icon-list">
             {

@@ -2,7 +2,7 @@ import cfg from "../../src/common/config";
 import { CHANGESTATE, BASELIST } from "../constants/icon";
 
 const INITIAL_STATE = {
-  showStep: 1,
+  showStep: 3,
   timeCfg: {
     time1: cfg.limitTime.time1,
     time2: cfg.limitTime.time2,

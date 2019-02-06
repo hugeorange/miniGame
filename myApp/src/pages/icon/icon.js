@@ -39,7 +39,7 @@ class Icon extends Component {
       <View className="icon">
         {showStep == 1 && <Step1 step1-class="step1"/>}
         {showStep == 2 && <Step2 step2-class="step2"/>}
-        {showStep == 3 && <Step3/>}
+        {showStep == 3 && <Step3 step3-class="step3"/>}
         {showStep == 4 && <Step4/>}
       </View>
     );

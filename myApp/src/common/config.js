@@ -78,23 +78,23 @@ const iconCfg = {
 	title: {
 		d1: {
 			title: '记忆小白',
-			img: 'xiaobai.jpg'
+			img: 'xiaobai'
 		},
 		d2: {
 			title: '记忆能手',
-			img: 'nengshou.jpg'
+			img: 'nengshou'
 		},
 		d3: {
 			title: '记忆超群',
-			img: 'chaoqun.jpg'
+			img: 'chaoqun'
 		},
 		d4: {
 			title: '记忆大师',
-			img: 'dashi.jpg'
+			img: 'dashi'
 		},
 		d5: {
 			title: '记忆宗师',
-			img: 'zongshi.jpg'
+			img: 'zongshi'
 		}
 	}
 }

@@ -1,5 +1,5 @@
 const config = {
-  projectName: 'myApp',
+  projectName: 'menory',
   date: '2019-2-1',
   designWidth: 750,
   deviceRatio: {
@@ -28,6 +28,7 @@ const config = {
   },
   copy: {
     patterns: [
+      { from: 'src/assets/image/icon/', to: 'dist/assets/image/icon/', ignore: '*.js' }, // 指定需要 copy 的目录
     ],
     options: {
     }
@@ -36,12 +37,12 @@ const config = {
     module: {
       postcss: {
         autoprefixer: {
-          enable: true,
+          enable: false,
           config: {
             browsers: [
               'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
+              'Android >= 6',
+              'ios >= 10'
             ]
           }
         },
