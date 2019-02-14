@@ -1,4 +1,4 @@
-import { CHANGESTATE, BASELIST } from '../constants/icon'
+import { CHANGESTATE, BASELIST, REFRESH } from '../constants/icon'
 
 export const changeState = (param) => {
   return {
@@ -32,5 +32,11 @@ export function baseList(param) {
     })
     const state = getState()
     return Promise.resolve(state)
+  }
+}
+
+export function refresh() {
+  return {
+    type: REFRESH
   }
 }

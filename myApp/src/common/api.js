@@ -3,6 +3,7 @@
  */
 import Taro from "@tarojs/taro";
 
+
 /**
  * 参数： code: 通过 wx.login 方法获得
  * 返回值：uid、PHPSESSIONID
@@ -25,10 +26,15 @@ const sendSessionCode = (data, succ, fail) => {
  * 参数：uid、resData用户信息
  * 返回值：true/false
  */
-const saveUserInfo = (data, succ, fail) => {
-  const url = "https://www.zoomwei.cn/api/59759d7d8e64c.html";
-  var data = data || {};
-  Taro.request(url, data, succ, fail, 'get');
+const saveUserInfo = data => {
+  return Taro.request({
+    url: "https://www.zoomwei.cn/api/59759d7d8e64c.html",
+    data: data,
+    header: {
+      'content-type': 'application/json'
+    },
+    method: 'GET'
+  })
 }
 
 /**

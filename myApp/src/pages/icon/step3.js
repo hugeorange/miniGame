@@ -1,15 +1,19 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View, Button, Canvas } from "@tarojs/components";
 import { connect } from "@tarojs/redux";
-import { changeState, baseList, asyncChangeState } from "../../actions/icon";
+import {
+  changeState,
+  baseList,
+  asyncChangeState,
+  refresh
+} from "../../actions/icon";
 import cfg from "../../common/config";
+import {setUserAuth} from './decorator'
 
 import defaultImg from "../../assets/image/default.png";
 import sharema from "../../assets/image/sharema.jpg";
 @connect(
-  ({ icon }) => ({
-    icon
-  }),
+  ({ icon, globalData }) => ({ icon, globalData }),
   dispatch => ({
     changeState(param) {
       dispatch(changeState(param));
@@ -19,9 +23,14 @@ import sharema from "../../assets/image/sharema.jpg";
     },
     baseList(param) {
       return dispatch(baseList(param));
+    },
+    refresh() {
+      return dispatch(refresh());
     }
   })
 )
+
+@setUserAuth
 class Step3 extends Component {
   static externalClasses = ["step3-class"];
   static options = {
@@ -33,7 +42,7 @@ class Step3 extends Component {
   }
 
   reStart = () => {
-    this.refreshPage();
+    this.props.refresh();
   };
 
   refreshPage() {
@@ -62,37 +71,34 @@ class Step3 extends Component {
   }
 
   downloadImg(canvas) {
-    // Taro.showLoading({ title: "加载中..." });
-    this.drawImage("../../assets/image/default.png");
-
-    // wx.downloadFile({
-    //   url:
-    //     app.globalData.userInfo.avatarUrl ||
-    //     "https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/7.png",
-    //   success: res => {
-    //     console.log(res);
-    //     this.drawImage(res.tempFilePath, canvas);
-    //   },
-    //   fail: err => {
-    //     console.log(err);
-    //     this.drawImage("../../assets/image/default.png");
-    //   },
-    //   complete: () => {
-    //     wx.hideLoading();
-    //   }
-    // });
+    Taro.showLoading({ title: "加载中..." });
+    const { userInfo } = this.props.globalData;
+    wx.downloadFile({
+      url: userInfo.avatarUrl,
+      success: res => {
+        console.log(res);
+        this.drawImage(res.tempFilePath);
+      },
+      fail: err => {
+        console.log(err);
+        this.drawImage("../../assets/image/default.png");
+      },
+      complete: () => {
+        wx.hideLoading();
+      }
+    });
   }
 
   // drawImage
   drawImage(imgUrl, ctxCanvas) {
-    console.log("ctxCanvas:", ctxCanvas, "imgUrl:", imgUrl);
     const { level } = this.props.icon;
+    const { userInfo } = this.props.globalData;
     let contextCanvas = ctxCanvas || "myCanvas";
-    const titleObj = this.getTitle();
-     
-    console.log('titleObj', titleObj)
 
-    const nickName = "test" || app.globalData.userInfo.nickName || "---";
+    let headImg = imgUrl || defaultImg;
+    const titleObj = this.getTitle();
+
+    const nickName = userInfo.nickName || "---";
 
     const ctx = Taro.createCanvasContext(contextCanvas, this);
 
@@ -102,23 +108,25 @@ class Step3 extends Component {
     ctx.setFillStyle("orange");
 
     ctx.setFontSize(14);
-    ctx.drawImage(defaultImg, 100, 20, 50, 50);
+    ctx.drawImage(headImg, 100, 20, 50, 50);
     ctx.setTextAlign("center");
     ctx.fillText(nickName, 125, 90);
     ctx.setTextAlign("center");
-    ctx.fillText(`在keep记忆中达到了 ${ctxCanvas ? "满" : level - 1} 级`, 125, 110);
+    ctx.fillText(
+      `在keep记忆中达到了 ${ctxCanvas ? "满" : level - 1} 级`,
+      125,
+      110
+    );
     ctx.fillText(`获得了 ${titleObj.title} 称号`, 125, 130);
     ctx.fillText("来挑战我吧！", 125, 150);
 
-    console.log('----', `../../assets/image/icon/${titleObj.img}.jpg`)
+    // 配置 config copy 属性即可动态加载图片
+    // ctx.drawImage(`../../assets/image/icon/${titleObj.img}.jpg`, 30, 170, 80, 80);
 
-
-    // ctx.drawImage(require(`../../assets/image/icon/${titleObj.img}.jpg`), 30, 170, 80, 80);
-
-    ctx.drawImage(sharema, 150, 170, 80, 80);
+    ctx.drawImage(sharema, 80, 170, 80, 80);
 
     ctx.setTextAlign("center");
-    ctx.fillText("长按图片识别小程序码来挑战吧", 120, 280);
+    ctx.fillText("长按图片识别小程序码来挑战吧", 125, 280);
 
     ctx.draw();
   }
@@ -140,6 +148,47 @@ class Step3 extends Component {
       };
     }
     return titleObj;
+  }
+
+  // 保存 canvas 图片
+  saveCanvasImg = ctx => {
+    Taro.canvasToTempFilePath({canvasId: ctx}, this.$scope).then(res => {
+      this.goDownload(res.tempFilePath)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
+   // 下载 canvas 保存的图片
+   goDownload(url) {
+    wx.showModal({
+      title: '提示',
+      content: '点击确定下载截图到相册，分享截图到朋友圈，邀请更多朋友一起来挑战',
+      confirmText: '确定',
+      cancelText: '取消',
+      success: (res) => {
+        if(res.confirm) {
+          Taro.showLoading({ title: "加载中..." });
+          wx.saveImageToPhotosAlbum({
+            filePath: url,
+            success: function (res) {
+              Taro.showToast({title: '成功下载到相册，请到相册选择图片分享到朋友圈，邀请更多朋友一起来挑战', duration: 6000})              
+            },
+            fail: (err) => {
+              console.log(err);
+              Taro.hideLoading()
+              if (err.errMsg == "saveImageToPhotosAlbum:fail auth deny") {
+                // 未授权
+                // 引导去授权 
+                this.guideUserAuth('是否授权小程序访问您的相册', {success: this.goDownload, param: url});
+              } else {
+                Taro.showToast({title: '下载失败'})
+              }
+            }
+          })
+        }  
+      }
+    })
   }
 
   // 分享信息
@@ -189,7 +238,11 @@ class Step3 extends Component {
           <Button type="primary" size="mini" onClick={this.reStart}>
             继续练
           </Button>
-          <Button type="primary" size="mini" data-canvas="myCanvas">
+          <Button
+            type="primary"
+            size="mini"
+            onClick={this.saveCanvasImg.bind(this, "myCanvas")}
+          >
             分享朋友圈
           </Button>
           <Button type="primary" open-type="share" size="mini">

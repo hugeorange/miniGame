@@ -1,5 +1,5 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Button, Text, Icon } from "@tarojs/components";
+import { View, Text, Icon } from "@tarojs/components";
 import { connect } from '@tarojs/redux'
 import {changeState, baseList, asyncChangeState} from '../../actions/icon'
 import {getOneArray, getNumArray} from '../../common/util'
@@ -27,6 +27,11 @@ class Step2 extends Component {
   componentDidMount() {
     console.log('我是不是只执行了一次次')
     this.initIcon()
+  }
+
+  componentWillUnmount() {
+    console.log('我是step3，我执行了...')
+    this.handlerCountDownTime && clearInterval(this.handlerCountDownTime)
   }
 
   initIcon() {
@@ -65,15 +70,18 @@ class Step2 extends Component {
     let passArr = currArr.map(item => item.icon); // 深拷贝上一等级的图标数组
     let { index, item } = getOneArray(iconList); // 随机取出当前等级的新图标
     let posArr = getNumArray(iconPosArr, level); // 取出当前等级的随机位置
-    currArr.push(item);
+    
+    // 不能直接对 currArr 进行数组变异操作，会污染 reducer redux 数据
+    let cArr = currArr.concat([])
+    cArr.push(item);
     iconList.splice(index, 1);
     
     // // 每完成一级训练打乱位置, -1 为训练模式
-    if(gameMode !== '-1') {
-      currArr.forEach((element, index) => element.no = posArr[index])
+    if(gameMode !== -1) {
+      cArr.forEach((element, index) => element.no = posArr[index])
     }
 
-    this.props.asyncChangeState({passArr, currArr, iconList})
+    this.props.asyncChangeState({passArr, currArr: cArr, iconList})
     .then(res => this.renderIcon(res.icon))
   }
 
@@ -158,7 +166,6 @@ class Step2 extends Component {
     // 播放通关音乐
     // 展示挑战成功状态
     this.props.changeState({clickNo: item.no, isPassClass: 'passClass'})
-    // 下一关卡渲染
     setTimeout(() => {
       this.props.changeState({isPassClass: '', level: ++level})
       this.clearBaseList('createCurrent')

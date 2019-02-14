@@ -12,9 +12,6 @@ import {changeState, asyncChangeState, baseList} from '../../actions/icon'
   },
   asyncChangeState(param) {
     return dispatch(asyncChangeState(param))
-  },
-  baseList(param) {
-    return dispatch(baseList(param))
   }
 }))
 
@@ -34,9 +31,6 @@ class Step1 extends Component {
   }
 
   render() {
-    const {
-      timeCfg,
-    } = this.props.icon
     const time1 = iconCfg.limitTime.time1
     console.log('step111')
     return (

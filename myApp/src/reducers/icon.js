@@ -1,8 +1,8 @@
 import cfg from "../../src/common/config";
-import { CHANGESTATE, BASELIST } from "../constants/icon";
+import { CHANGESTATE, BASELIST, REFRESH } from "../constants/icon";
 
 const INITIAL_STATE = {
-  showStep: 3,
+  showStep: 1,
   timeCfg: {
     time1: cfg.limitTime.time1,
     time2: cfg.limitTime.time2,
@@ -26,6 +26,7 @@ const INITIAL_STATE = {
 export default function icon(state = INITIAL_STATE, action) {
   switch (action.type) {
     case CHANGESTATE:
+      console.log('INITIAL_STATE123', INITIAL_STATE)
       return {
         ...state,
         ...action.payload
@@ -35,6 +36,9 @@ export default function icon(state = INITIAL_STATE, action) {
         ...state,
         baseList: action.payload.baseList.concat([])
       }
+    case REFRESH:
+      
+      return INITIAL_STATE
     default:
       return state;
   }
