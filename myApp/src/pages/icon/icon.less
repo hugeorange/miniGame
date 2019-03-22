@@ -1,0 +1,198 @@
+/**选择训练模式页面**/
+.menory-icon {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-image: url(https://www.zoomwei.cn/Public/images/headbackgroud.jpg);
+  background-size: 100px 100px;
+  background-repeat: repeat; 
+}
+
+// 开始之前页面
+.step1 {
+  font-size: 32px;
+  color: #fff;
+  .game-mode {
+    .mode {  
+      padding: 20px;
+      padding-left: 20px;
+      margin: 30px;
+      background-color: #f3a83b;
+      border-radius: 1px solid #ccc;
+    }
+  }
+  .game-mode .mode-hover{
+    color: rgb(196, 196, 44);
+  }
+  .game-mode .mode-hover{
+    color: rgb(196, 196, 44);
+  }
+  .tips{
+    font-size: 26px;
+    color: #ccc;
+    text-align: left;
+    padding: 10px 20px;  
+  }
+  .tips1 {
+    margin-top: 30px;
+  }
+  .tips3 {
+    color: black;
+  }
+}
+
+
+/* 训练页面 */
+.step2 {
+  width: 100%;
+  height: 100%;
+  font-size: 28px;
+  .started {
+    background-color: rgb(237,242,246);  
+    min-height:100vh;
+  }
+  .started .current-tips {
+    padding: 20px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+  }
+  .started .current-tips .count-down {
+    color: red;
+    font-size: 24px;
+  }
+  
+  .started .icon-list {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .started .icon-list .list-item {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    overflow: hidden;
+    font-size: 80px;
+    color: rgb(255,165,0);
+    border: 1px solid rgb(166, 255, 0);
+  }
+
+  .started .icon-list .nopassClass {
+    background-color: rgba(209, 42, 42, 0.625);
+  }
+  
+  .started .icon-list .passClass {
+    background-color: rgba(47, 182, 47, 0.564);
+  }
+}
+
+.step3 {
+  color: #000;
+  width:100%;
+  min-height:100%;
+  position:fixed;
+  background-color:#fac800;
+  .bottom-btn {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    display: flex;
+    justify-content: space-around;
+    button {
+      background-color: #f3a83b;
+    }
+  }
+  .canvas-image {
+    width: 500px;
+    margin: 80px auto;
+    height: 600px;
+    border: 1px solid red;
+  }
+  .guidetips {
+    font-size: 26px;
+    color: #fff;
+    text-align: center;
+  }
+}
+
+/* 未通过训练页面 */
+.nopass-page {
+  width:100%;
+  min-height:100%;
+  position:relative;
+  background-color:#f3a83b;
+  display:flex;
+  flex-direction:column;
+}
+.nopass-page .zhanwei {
+  width: 100%;
+  height: 30px;
+}
+.nopass-page .canvas-image {
+  width: 300px;
+  padding-top: 20px; 
+  margin: 0 auto;
+  height: 400px;
+  /* border: 1px solid red; */
+}
+.nopass-page .guidetips {
+  font-size: 14px;
+  line-height: 50px;
+}
+
+
+.nopass-page .bgimg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.nopass-page .tips{
+  background-color: #f3a83b;
+  position: relative;
+  width: 100%;
+  /* padding-top: 25px; */
+}
+.nopass-page .tips image {
+  width: 680rpx;
+  height: 402rpx;
+  margin-top: 45px;
+}
+.nopass-page .tips1{
+  color:#fff;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 48%;
+}
+
+.nopass-page .tips1 .pass-level {
+  font-size: 45px;
+}
+
+.nopass-page .downloadImg{
+  margin: 50rpx;
+  background-color: rgb(242, 168, 59);
+}
+.nopass-page .bottom-btn {
+  width: 100%;
+  /* position: absolute; */
+  /* left: 0; */
+  /* bottom: 50rpx; */
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 30px;
+  padding-top: 15px;
+}
+.nopass-page .bottom-btn>button{
+  font-size: 18px;
+  background-color: rgb(242, 168, 59);
+  border-radius: 6px;
+  padding:0 10px;
+}
